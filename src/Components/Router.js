@@ -6,6 +6,7 @@ import {
   Switch
 } from "react-router-dom";
 import Home from "Routes/Home";
+import Join from "Routes/Join";
 import Header from "./Header";
 
 export default () => (
@@ -14,6 +15,7 @@ export default () => (
       <Header />
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/join" exact component={Join} />
         <Redirect from="*" to="/" />
       </Switch>
     </>

@@ -4,7 +4,7 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: 0
+      login: false
     };
   }
 
@@ -13,11 +13,11 @@ export default class extends React.Component {
       .then(res => res.json())
       .then(myJson => {
         console.log(myJson);
-        return this.setState({ users: myJson.body });
+        return this.setState({ login: myJson.body });
       });
   }
   render() {
-    const { users } = this.state;
-    return <HomePresenter users={users} />;
+    const { login } = this.state;
+    return <HomePresenter login={login} />;
   }
 }
