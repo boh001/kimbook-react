@@ -2,16 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { color } from "../../Components/variable";
+import { Link } from "react-router-dom";
 const MainHome = styled.div`
   margin: 0px 10px 0px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-const HomeJoin = styled.form.attrs({
-  action: "/join",
-  method: "post",
-  enctype: "multipart/form-data"
+const HomeLogin = styled.form.attrs({
+  action: "/login",
+  method: "post"
 })`
   display: flex;
   margin-top: 80px;
@@ -34,162 +34,117 @@ const HomeJoin = styled.form.attrs({
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 `;
-const JoinMent = styled.div`
-  font-size: 20px;
-  margin-bottom: 60px;
+const LoginId = styled.input.attrs({
+  type: "text",
+  name: "nickname",
+  placeholder: "아이디를 입력하세요",
+  required: true
+})`
+  width: 350px;
+  height: 40px;
+  border: 1px solid ${color.fbBg};
+  border-radius: ${color.frRa};
+  padding-left: 20px;
+`;
+const LoginPwd = styled.input.attrs({
+  type: "password",
+  name: "password",
+  placeholder: "비밀번호를 입력하세요",
+  required: true
+})`
+  width: 350px;
+  height: 40px;
+  border: 1px solid ${color.fbBg};
+  border-radius: ${color.frRa};
+  padding-left: 20px;
 `;
 const Wrap = styled.div`
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
   align-items: 20px;
   margin-bottom: 20px;
 `;
 const Label = styled.div`
   display: flex;
-  margin-right: 20px;
   width: 80px;
   justify-content: flex-start;
   align-items: center;
-  font-size: 12px;
+  font-size: 15px;
+  margin-bottom: 10px;
 `;
-const JoinName = styled.input.attrs({
-  type: "text",
-  name: "name",
-  placeholder: "Full Name",
-  required: true
-})`
-  width: 350px;
-  height: 40px;
-  border: 1px solid ${color.fbBg};
-  border-radius: ${color.frRa};
-  padding-left: 20px;
-`;
-const JoinNickname = styled.input.attrs({
-  type: "text",
-  name: "name",
-  placeholder: "NickName",
-  required: true
-})`
-  width: 350px;
-  height: 40px;
-  border: 1px solid ${color.fbBg};
-  border-radius: ${color.frRa};
-  padding-left: 20px;
-`;
-const JoinPwd = styled.input.attrs({
-  type: "text",
-  name: "name",
-  placeholder: "Password",
-  required: true
-})`
-  width: 350px;
-  height: 40px;
-  border: 1px solid ${color.fbBg};
-  border-radius: ${color.frRa};
-  padding-left: 20px;
-`;
-const JoinPwd2 = styled.input.attrs({
-  type: "text",
-  name: "name",
-  placeholder: "Verify Password",
-  required: true
-})`
-  width: 350px;
-  height: 40px;
-  border: 1px solid ${color.fbBg};
-  border-radius: ${color.frRa};
-  padding-left: 20px;
-`;
-
-const JoinEmail = styled.input.attrs({
-  type: "text",
-  name: "name",
-  placeholder: "Email",
-  required: true
-})`
-  width: 350px;
-  height: 40px;
-  border: 1px solid ${color.fbBg};
-  border-radius: ${color.frRa};
-  padding-left: 20px;
-`;
-
-const UploadInput = styled.input.attrs({
-  type: "file",
-  name: "content",
-  accept: "image/*"
-})`
-  border: 1px solid ${color.fbBg};
-  border-radius: ${color.frRa};
-  width: 350px;
-  height: 40px;
-`;
-const JoinSubmit = styled.input.attrs({
+const LoginSubmit = styled.input.attrs({
   type: "submit",
-  value: "가입하기"
+  value: "로그인"
 })`
   margin-top: 20px;
   width: 350px;
   cursor: pointer;
   height: 40px;
-  border: 1px solid #36a420;
-  background-color: #36a420;
+  border: 1px solid #1877f2;
+  background-color: #1877f2;
   border-radius: ${color.frRa};
+  font-size: 20px;
+  font-weigth: bold;
   color: white;
-  &:hover {
-    background-color: #328c20;
-  }
+`;
+const FindPwd = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 350px;
+  color: #1877f2;
+  text-decoration: none;
+`;
+const Line = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const HrLine = styled.hr`
+  width: 153px;
+  border: 1px solid ${color.fbBg};
+  margin: 0px 10px 0px 10px;
+`;
+const HrText = styled.span`
+  font-size: 13px;
+`;
+const HomeJoin = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 130px;
+  height: 44px;
+  color: white;
+  border-radius: ${color.frRa};
+  background-color: #36a420;
+  text-decoration: none;
+  font-size: 15px;
 `;
 const HomePresenter = ({ login }) => (
   <MainHome>
-    {(login && (
-      <>
-        <div>hi</div>
-        <div>{login}</div>
-      </>
-    )) || (
-      <HomeJoin>
-        <>
-          <JoinMent>새 계정 만들기</JoinMent>
-          <Wrap>
-            <>
-              <Label>이름</Label>
-              <JoinName></JoinName>
-            </>
-          </Wrap>
-          <Wrap>
-            <>
-              <Label>아이디</Label>
-              <JoinNickname></JoinNickname>
-            </>
-          </Wrap>
-          <Wrap>
-            <>
-              <Label>이메일</Label>
-              <JoinEmail></JoinEmail>
-            </>
-          </Wrap>
-          <Wrap>
-            <>
-              <Label>비밀번호</Label>
-              <JoinPwd></JoinPwd>
-            </>
-          </Wrap>
-          <Wrap>
-            <>
-              <Label>비밀번호 확인</Label>
-              <JoinPwd2></JoinPwd2>
-            </>
-          </Wrap>
-          <Wrap>
-            <>
-              <Label>프로필 사진</Label>
-              <UploadInput></UploadInput>
-            </>
-          </Wrap>
-          <JoinSubmit></JoinSubmit>
-        </>
-      </HomeJoin>
+    {(login && <div>hi</div>) || (
+      <HomeLogin>
+        <Wrap>
+          <Label>아이디</Label>
+          <LoginId></LoginId>
+        </Wrap>
+        <Wrap>
+          <Label>비밀번호</Label>
+          <LoginPwd></LoginPwd>
+        </Wrap>
+        <LoginSubmit></LoginSubmit>
+        <FindPwd to="/find">계정을 잊으셨나요?</FindPwd>
+        <Line>
+          <HrLine />
+          <HrText>또는</HrText>
+          <HrLine />
+        </Line>
+        <HomeJoin to="/join">새 계정 만들기</HomeJoin>
+      </HomeLogin>
     )}
   </MainHome>
 );
