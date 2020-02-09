@@ -2,9 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { color } from "../../Components/variable";
+import Header from "../../Components/Header";
 const MainHome = styled.div`
   margin: 0px 10px 0px 10px;
   display: flex;
+  height: 950px;
   justify-content: center;
   align-items: center;
 `;
@@ -164,53 +166,37 @@ const UploadBtn = styled.button`
 `;
 const JoinPresenter = () => (
   <MainHome>
+    <Header />
     <HomeJoin>
-      <>
-        <JoinMent>새 계정 만들기</JoinMent>
-
-        <Wrap>
-          <>
-            <Label>이름</Label>
-            <JoinName></JoinName>
-          </>
-        </Wrap>
-        <Wrap>
-          <>
-            <Label>아이디</Label>
-            <JoinNickname></JoinNickname>
-          </>
-        </Wrap>
-        <Wrap>
-          <>
-            <Label>이메일</Label>
-            <JoinEmail></JoinEmail>
-          </>
-        </Wrap>
-        <Wrap>
-          <>
-            <Label>비밀번호</Label>
-            <JoinPwd></JoinPwd>
-          </>
-        </Wrap>
-        <Wrap>
-          <>
-            <Label>비밀번호 확인</Label>
-            <JoinPwd2></JoinPwd2>
-          </>
-        </Wrap>
-        <Wrap>
-          <>
-            <Label>프로필 사진</Label>
-            <UploadWrap>
-              <>
-                <UploadBtn>Upload</UploadBtn>
-                <UploadInput></UploadInput>
-              </>
-            </UploadWrap>
-          </>
-        </Wrap>
-        <JoinSubmit></JoinSubmit>
-      </>
+      <JoinMent>새 계정 만들기</JoinMent>
+      <Wrap>
+        <Label>이름</Label>
+        <JoinName></JoinName>
+      </Wrap>
+      <Wrap>
+        <Label>아이디</Label>
+        <JoinNickname></JoinNickname>
+      </Wrap>
+      <Wrap>
+        <Label>이메일</Label>
+        <JoinEmail></JoinEmail>
+      </Wrap>
+      <Wrap>
+        <Label>비밀번호</Label>
+        <JoinPwd></JoinPwd>
+      </Wrap>
+      <Wrap>
+        <Label>비밀번호 확인</Label>
+        <JoinPwd2></JoinPwd2>
+      </Wrap>
+      <Wrap>
+        <Label>프로필 사진</Label>
+        <UploadWrap>
+          <UploadBtn>Upload</UploadBtn>
+          <UploadInput></UploadInput>
+        </UploadWrap>
+      </Wrap>
+      <JoinSubmit></JoinSubmit>
     </HomeJoin>
   </MainHome>
 );

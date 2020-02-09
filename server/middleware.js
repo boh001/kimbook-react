@@ -2,15 +2,8 @@ import routes from "./routes";
 import multer from "multer";
 import multerS3 from "multer-s3";
 import aws from "aws-sdk";
-import fs from "fs";
-import path from "path";
 import User from "./models/User";
 import ChatRoom from "./models/chatRoom";
-
-const s3 = new aws.S3({
-  secretAccessKey: process.env.AWS_SECRET_KEY,
-  accessKeyId: process.env.AWS_KEY
-});
 
 export const globalVariable = async (req, res, next) => {
   res.locals.routes = routes;
@@ -65,6 +58,11 @@ export const globalVariable = async (req, res, next) => {
 //     cb(null, store);
 //   }
 // });
+
+const s3 = new aws.S3({
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  accessKeyId: process.env.AWS_KEY
+});
 const upload = multer({
   storage: multerS3({
     s3,
@@ -82,7 +80,7 @@ const upload = multer({
           user: { nickname }
         } = req;
       }
-      console.log("multer", req.file);
+      console.log("multer", file);
 
       const { mimetype } = file;
       const bucket = `kimbook/${nickname}/${mimetype.split("/")[0]}`;

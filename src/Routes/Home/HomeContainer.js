@@ -1,5 +1,6 @@
 import React from "react";
 import HomePresenter from "./HomePresenter";
+import Header from "../../Components/Header";
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +19,12 @@ export default class extends React.Component {
   }
   render() {
     const { login } = this.state;
-    return <HomePresenter login={login} />;
+    return (
+      <>
+        {login && <Header />}
+
+        <HomePresenter login={login} />
+      </>
+    );
   }
 }

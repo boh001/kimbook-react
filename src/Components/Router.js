@@ -8,12 +8,10 @@ import {
 import Home from "Routes/Home";
 import Login from "Routes/Login";
 import Join from "Routes/Join";
-import Header from "./Header";
 
 export default () => (
   <Router>
     <>
-      <Header />
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/join" exact component={Join} />

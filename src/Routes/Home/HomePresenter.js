@@ -3,18 +3,57 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { color } from "../../Components/variable";
 import { Link } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyles = createGlobalStyle`
+  body{
+    background-color:${color.fbWhite};
+}`;
 const MainHome = styled.div`
   margin: 0px 10px 0px 10px;
   display: flex;
+  height: 1100px;
   justify-content: center;
   align-items: center;
+`;
+const HomeTheme = styled.div`
+  display: flex;
+  width: 500px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-right: 50px;
+`;
+const ThemeMain = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 35px;
+  font-weight: bold;
+  color: ${color.fbLightBlue};
+  margin-bottom: 50px;
+`;
+
+const ThemeUl = styled.ul`
+  padding-left: 20px;
+  list-style-type: circle;
+  font-size: 20px;
+  margin-bottom: 30px;
+`;
+const UlSpan = styled.div`
+  margin-bottom: 15px;
+`;
+const UlLi = styled.li`
+  margin-top: 5px;
+  font-size: 15px;
 `;
 const HomeLogin = styled.form.attrs({
   action: "/login",
   method: "post"
 })`
   display: flex;
-  margin-top: 80px;
   width: 500px;
   justify-content: center;
   align-items: center;
@@ -22,17 +61,6 @@ const HomeLogin = styled.form.attrs({
   padding: 20px;
   background-color: ${color.fbWhite};
   border-radius: ${color.frRa};
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
 `;
 const LoginId = styled.input.attrs({
   type: "text",
@@ -81,11 +109,11 @@ const LoginSubmit = styled.input.attrs({
   width: 350px;
   cursor: pointer;
   height: 40px;
-  border: 1px solid #1877f2;
-  background-color: #1877f2;
+  border: 1px solid ${color.fbLightBlue};
+  background-color: ${color.fbLightBlue};
   border-radius: ${color.frRa};
   font-size: 20px;
-  font-weigth: bold;
+  font-weight: bold;
   color: white;
 `;
 const FindPwd = styled(Link)`
@@ -94,7 +122,7 @@ const FindPwd = styled(Link)`
   align-items: center;
   margin-top: 20px;
   width: 350px;
-  color: #1877f2;
+  color: ${color.fbLightBlue};
   text-decoration: none;
 `;
 const Line = styled.div`
@@ -120,32 +148,53 @@ const HomeJoin = styled(Link)`
   height: 44px;
   color: white;
   border-radius: ${color.frRa};
-  background-color: #36a420;
+  background-color: ${color.fbGreen};
   text-decoration: none;
   font-size: 15px;
 `;
 const HomePresenter = ({ login }) => (
   <MainHome>
-    {(login && <div>hi</div>) || (
-      <HomeLogin>
-        <Wrap>
-          <Label>아이디</Label>
-          <LoginId></LoginId>
-        </Wrap>
-        <Wrap>
-          <Label>비밀번호</Label>
-          <LoginPwd></LoginPwd>
-        </Wrap>
-        <LoginSubmit></LoginSubmit>
-        <FindPwd to="/find">계정을 잊으셨나요?</FindPwd>
-        <Line>
-          <HrLine />
-          <HrText>또는</HrText>
-          <HrLine />
-        </Line>
-        <HomeJoin to="/join">새 계정 만들기</HomeJoin>
-      </HomeLogin>
-    )}
+    <GlobalStyles />
+    <HomeTheme>
+      <ThemeMain>Kimbook(Facebook Clone)</ThemeMain>
+      <ThemeUl>
+        <UlSpan>Programming Language</UlSpan>
+        <UlLi>Backend : NodeJS(Express)</UlLi>
+        <UlLi>FrontEnd : ReactJS</UlLi>
+      </ThemeUl>
+      <ThemeUl>
+        <UlSpan>Function</UlSpan>
+        <UlLi>Upload Contents</UlLi>
+        <UlLi>Like Button</UlLi>
+        <UlLi>Find Friends</UlLi>
+        <UlLi>Comment</UlLi>
+        <UlLi>Realtime Chat(socket.io)</UlLi>
+      </ThemeUl>
+      <ThemeUl>
+        <UlSpan>Hosting</UlSpan>
+        <UlLi>Server : Heroku</UlLi>
+        <UlLi>DB : MongoAtlas</UlLi>
+        <UlLi>Storage : AWS-s3</UlLi>
+      </ThemeUl>
+    </HomeTheme>
+    <HomeLogin>
+      <Wrap>
+        <Label>아이디</Label>
+        <LoginId></LoginId>
+      </Wrap>
+      <Wrap>
+        <Label>비밀번호</Label>
+        <LoginPwd></LoginPwd>
+      </Wrap>
+      <LoginSubmit></LoginSubmit>
+      <FindPwd to="/find">계정을 잊으셨나요?</FindPwd>
+      <Line>
+        <HrLine />
+        <HrText>또는</HrText>
+        <HrLine />
+      </Line>
+      <HomeJoin to="/join">새 계정 만들기</HomeJoin>
+    </HomeLogin>
   </MainHome>
 );
 

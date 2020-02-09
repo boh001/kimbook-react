@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing:border-box;
     }
     body{
-        height: 8000px;
+        height: 2000px;
         padding-top: 50px;
         background-color: ${color.fbBg};
     }
