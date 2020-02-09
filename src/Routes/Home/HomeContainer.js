@@ -1,6 +1,5 @@
 import React from "react";
 import HomePresenter from "./HomePresenter";
-
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +9,7 @@ export default class extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3001/api/test")
+    fetch("/test")
       .then(res => res.json())
       .then(myJson => {
         console.log(myJson);

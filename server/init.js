@@ -1,8 +1,7 @@
-import "@babel/polyfill";
+import app from "./app";
 import dotenv from "dotenv";
 dotenv.config();
-import app from "./server";
-const port = process.env.PORT || 3001;
+const port = process.env.SERVER_PORT || 3001;
 app.listen(port, () => {
-  console.log(`Listen : http://localhost:${port}`);
+  console.log(`Connected`);
 });
