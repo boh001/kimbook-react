@@ -39,53 +39,53 @@ export const globalVariable = async (req, res, next) => {
   }
   next();
 };
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     if (!req.body.nickname) {
-//       var {
-//         user: { nickname }
-//       } = req;
-//     } else {
-//       var {
-//         body: { nickname }
-//       } = req;
-//     }
-//     const { mimetype } = file;
-//     const store = `uploads/${nickname}/${mimetype.split("/")[0]}`;
-//     fs.mkdirSync(path.join(__dirname, store), { recursive: true }, err => {
-//       console.log(err);
-//     });
-//     cb(null, store);
-//   }
-// });
-
-const s3 = new aws.S3({
-  secretAccessKey: process.env.AWS_SECRET_KEY,
-  accessKeyId: process.env.AWS_KEY
-});
-const upload = multer({
-  storage: multerS3({
-    s3,
-    acl: "public-read",
-    key: (req, file, cb) => {
-      cb(null, Date.now().toString());
-    },
-    bucket: (req, file, cb) => {
-      if (!req.user) {
-        var {
-          body: { nickname }
-        } = req;
-      } else {
-        var {
-          user: { nickname }
-        } = req;
-      }
-      console.log("multer", file);
-
-      const { mimetype } = file;
-      const bucket = `kimbook/${nickname}/${mimetype.split("/")[0]}`;
-      cb(null, bucket);
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    if (!req.body.nickname) {
+      var {
+        user: { nickname }
+      } = req;
+    } else {
+      var {
+        body: { nickname }
+      } = req;
     }
-  })
+    const { mimetype } = file;
+    const store = `uploads/${nickname}/${mimetype.split("/")[0]}`;
+    fs.mkdirSync(path.join(__dirname, store), { recursive: true }, err => {
+      console.log(err);
+    });
+    cb(null, store);
+  }
 });
-export const contentUpload = upload.single("content");
+export const contentUpload = multer({ storage }).single("content");
+// const s3 = new aws.S3({
+//   secretAccessKey: process.env.AWS_SECRET_KEY,
+//   accessKeyId: process.env.AWS_KEY
+// });
+// const upload = multer({
+//   storage: multerS3({
+//     s3,
+//     acl: "public-read",
+//     key: (req, file, cb) => {
+//       cb(null, Date.now().toString());
+//     },
+//     bucket: (req, file, cb) => {
+//       if (!req.user) {
+//         var {
+//           body: { nickname }
+//         } = req;
+//       } else {
+//         var {
+//           user: { nickname }
+//         } = req;
+//       }
+//       console.log("multer", file);
+
+//       const { mimetype } = file;
+//       const bucket = `kimbook/${nickname}/${mimetype.split("/")[0]}`;
+//       cb(null, bucket);
+//     }
+//   })
+// });
+//export const contentUpload = upload.single("content");
