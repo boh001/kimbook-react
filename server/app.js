@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import passport from "passport";
 import morgan from "morgan";
 import helmet from "helmet";
+import "./passport";
 import { globalVariable } from "./middleware";
 import dotenv from "dotenv";
 import initRouter from "./router/initRouter";

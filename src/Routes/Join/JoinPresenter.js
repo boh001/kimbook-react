@@ -13,7 +13,7 @@ const MainHome = styled.div`
 const HomeJoin = styled.form.attrs({
   action: "/join",
   method: "post",
-  enctype: "multipart/form-data"
+  encType: "multipart/form-data"
 })`
   display: flex;
   margin-top: 80px;
@@ -171,29 +171,29 @@ const JoinPresenter = () => (
       <JoinMent>새 계정 만들기</JoinMent>
       <Wrap>
         <Label>이름</Label>
-        <JoinName></JoinName>
+        <JoinName />
       </Wrap>
       <Wrap>
         <Label>아이디</Label>
-        <JoinNickname></JoinNickname>
+        <JoinNickname />
       </Wrap>
       <Wrap>
         <Label>이메일</Label>
-        <JoinEmail></JoinEmail>
+        <JoinEmail />
       </Wrap>
       <Wrap>
         <Label>비밀번호</Label>
-        <JoinPwd></JoinPwd>
+        <JoinPwd />
       </Wrap>
       <Wrap>
         <Label>비밀번호 확인</Label>
-        <JoinPwd2></JoinPwd2>
+        <JoinPwd2 />
       </Wrap>
       <Wrap>
         <Label>프로필 사진</Label>
         <UploadWrap>
           <UploadBtn>Upload</UploadBtn>
-          <UploadInput></UploadInput>
+          <UploadInput />
         </UploadWrap>
       </Wrap>
       <JoinSubmit></JoinSubmit>
