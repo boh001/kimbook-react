@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { color } from "../../Components/variable";
 import Header from "../../Components/Header";
-const MainHome = styled.div`
+const HomeFrame2 = styled.div`
   margin: 0px 10px 0px 10px;
   display: flex;
   height: 950px;
@@ -165,7 +165,7 @@ const UploadBtn = styled.button`
   cursor: pointer;
 `;
 const JoinPresenter = () => (
-  <MainHome>
+  <HomeFrame2>
     <Header />
     <HomeJoin>
       <JoinMent>새 계정 만들기</JoinMent>
@@ -198,6 +198,6 @@ const JoinPresenter = () => (
       </Wrap>
       <JoinSubmit></JoinSubmit>
     </HomeJoin>
-  </MainHome>
+  </HomeFrame2>
 );
 export default JoinPresenter;

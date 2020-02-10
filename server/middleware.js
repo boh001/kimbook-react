@@ -2,6 +2,8 @@ import routes from "./routes";
 import multer from "multer";
 import multerS3 from "multer-s3";
 import aws from "aws-sdk";
+import fs from "fs";
+import path from "path";
 import User from "./models/User";
 import ChatRoom from "./models/chatRoom";
 
@@ -52,10 +54,11 @@ const storage = multer.diskStorage({
     }
     const { mimetype } = file;
     const store = `uploads/${nickname}/${mimetype.split("/")[0]}`;
+
     fs.mkdirSync(path.join(__dirname, store), { recursive: true }, err => {
       console.log(err);
     });
-    cb(null, store);
+    cb(null, `server/${store}`);
   }
 });
 export const contentUpload = multer({ storage }).single("content");
@@ -80,12 +83,12 @@ export const contentUpload = multer({ storage }).single("content");
 //           user: { nickname }
 //         } = req;
 //       }
-//       console.log("multer", file);
+//       console.log("middel", file);
 
 //       const { mimetype } = file;
-//       const bucket = `kimbook/${nickname}/${mimetype.split("/")[0]}`;
+//       const bucket = `kimbook-react/${nickname}/${mimetype.split("/")[0]}`;
 //       cb(null, bucket);
 //     }
 //   })
 // });
-//export const contentUpload = upload.single("content");
+// export const contentUpload = upload.single("content");

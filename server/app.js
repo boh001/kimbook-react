@@ -10,7 +10,7 @@ import helmet from "helmet";
 import "./passport";
 import { globalVariable } from "./middleware";
 import dotenv from "dotenv";
-import initRouter from "./router/initRouter";
+import initRouter from "./routers/initRouter";
 dotenv.config();
 
 const app = express();
