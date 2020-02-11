@@ -14,9 +14,10 @@ const initRouter = express.Router();
 
 initRouter.post(routes.join, contentUpload, postJoin, verifyEmail);
 initRouter.post(routes.login, checkAuth, postLogin);
-initRouter.post(routes.logout, logout);
+initRouter.get(routes.logout, logout);
 initRouter.post(routes.auth, postAuth);
 initRouter.get("/test", (req, res) => {
+  console.log("3", req.user);
   if (!req.user) {
     res.json({ user: { login: false } });
   } else {

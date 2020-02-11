@@ -8,6 +8,7 @@ import User from "./models/User";
 import ChatRoom from "./models/chatRoom";
 
 export const globalVariable = async (req, res, next) => {
+  console.log(req.user);
   res.locals.routes = routes;
   res.locals.user = req.user || false;
   if (req.user) {

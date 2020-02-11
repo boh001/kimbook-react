@@ -9,10 +9,11 @@ export default class extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetch("/test")
       .then(res => res.json())
       .then(myJson => this.setState({ user: myJson.user }));
+    console.log(1);
   }
   render() {
     const {

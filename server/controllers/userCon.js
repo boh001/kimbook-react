@@ -73,7 +73,6 @@ export const postAuth = async (req, res) => {
     res.json({ verify: false });
   }
 };
-
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
   successRedirect: routes.home
@@ -90,10 +89,10 @@ export const checkAuth = async (req, res, next) => {
   }
 };
 export const logout = (req, res) => {
-  console.log("hi");
+  console.log("1", req.user);
 
   req.logout();
-  res.redirect(routes.home);
+  console.log("2", req.user);
 };
 export const profile = (req, res) => {
   res.render("profile");
