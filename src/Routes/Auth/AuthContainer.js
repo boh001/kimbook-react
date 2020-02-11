@@ -3,14 +3,13 @@ import React from "react";
 
 class AuthContainer extends React.Component {
   state = {
-    verify: "",
-    username: ""
+    verify: ""
   };
   componentWillMount() {
     const {
       location: { search }
     } = this.props;
-    const data = fetch("/auth", {
+    fetch("/auth", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
@@ -18,13 +17,12 @@ class AuthContainer extends React.Component {
       body: JSON.stringify({ key: search.split("=")[1] })
     })
       .then(res => res.json())
-      .then(myJson => myJson)
+      .then(myJson => this.setState({ verify: myJson.verify }))
       .catch(error => console.log(error));
-    this.setState({ username: data.username, verify: data.verify });
   }
   render() {
-    const { verify, username } = this.state;
-    return <AuthPresenter verify={verify} username={username} />;
+    const { verify } = this.state;
+    return <AuthPresenter verify={verify} />;
   }
 }
 export default AuthContainer;

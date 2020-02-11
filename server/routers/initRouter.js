@@ -14,14 +14,16 @@ const initRouter = express.Router();
 
 initRouter.post(routes.join, contentUpload, postJoin, verifyEmail);
 initRouter.post(routes.login, checkAuth, postLogin);
-initRouter.get(routes.logout, logout);
+initRouter.post(routes.logout, logout);
 initRouter.post(routes.auth, postAuth);
 initRouter.get("/test", (req, res) => {
-  res.send({
-    headers: {
-      "Content-Type": "text/html"
-    },
-    body: false
-  });
+  if (!req.user) {
+    res.json({ user: { login: false } });
+  } else {
+    const {
+      user: { nickname, avatarUrl }
+    } = req;
+    res.json({ user: { nickname, avatarUrl, login: true } });
+  }
 });
 export default initRouter;

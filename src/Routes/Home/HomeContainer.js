@@ -1,29 +1,31 @@
 import React from "react";
 import HomePresenter from "./HomePresenter";
-import Header from "../../Components/Header";
+
 export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: false
+      user: {}
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     fetch("/test")
       .then(res => res.json())
-      .then(myJson => {
-        console.log(myJson);
-        return this.setState({ login: myJson.body });
-      });
+      .then(myJson => this.setState({ user: myJson.user }));
   }
   render() {
-    const { login } = this.state;
+    const {
+      user: { login, nickname, avatarUrl }
+    } = this.state;
+
     return (
       <>
-        {login && <Header />}
-
-        <HomePresenter login={login} />
+        <HomePresenter
+          login={login}
+          nickname={nickname}
+          avatarUrl={avatarUrl}
+        />
       </>
     );
   }

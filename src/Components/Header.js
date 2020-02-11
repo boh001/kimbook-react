@@ -74,7 +74,7 @@ const UsersJoin = styled.div`
   margin-right: 10px;
 `;
 const UsersLogin = styled.div``;
-export default withRouter(() => (
+export default ({ login, nickname, avatarUrl }) => (
   <Header>
     <HeaderSearch>
       <SearchHome>
@@ -92,12 +92,26 @@ export default withRouter(() => (
       </SearchBar>
     </HeaderSearch>
     <HeaderUsers>
-      <UsersJoin>
-        <HLink to="/join">회원가입</HLink>
-      </UsersJoin>
-      <UsersLogin>
-        <HLink to="/login">로그인</HLink>
-      </UsersLogin>
+      {login ? (
+        <>
+          <UsersJoin>
+            <img src={avatarUrl} />
+            <HLink to="/join">{nickname}</HLink>
+          </UsersJoin>
+          <UsersLogin>
+            <HLink to="/logout">로그아웃</HLink>
+          </UsersLogin>
+        </>
+      ) : (
+        <>
+          <UsersJoin>
+            <HLink to="/join">회원가입</HLink>
+          </UsersJoin>
+          <UsersLogin>
+            <HLink to="/login">로그인</HLink>
+          </UsersLogin>
+        </>
+      )}
     </HeaderUsers>
   </Header>
-));
+);

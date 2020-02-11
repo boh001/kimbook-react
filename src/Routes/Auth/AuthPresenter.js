@@ -34,18 +34,22 @@ const HomeAuth = styled.div`
 const AuthMent = styled.div`
   font-size: 25px;
   font-weight: bold;
+  width: 100%;
 `;
-const AuthCheck = styled.div``;
+const AuthCheck = styled.div`
+  margin-top: 20px;
+  width: 100%;
+`;
 const LoginPresenter = ({ verify }) => (
   <>
     <Header />
     <HomeFrame2>
       <HomeAuth>
-        <AuthMent>이메일 인증</AuthMent>{" "}
+        <AuthMent>이메일 인증</AuthMent>
         {verify ? (
-          <AuthCheck>인증에 성공하였습니다!!!</AuthCheck>
+          <AuthCheck>인증에 성공하였습니다</AuthCheck>
         ) : (
-          <AuthCheck>인증에 실패하였습니다!!!</AuthCheck>
+          <AuthCheck>인증에 실패하였습니다</AuthCheck>
         )}
       </HomeAuth>
     </HomeFrame2>

@@ -65,12 +65,12 @@ export const postAuth = async (req, res) => {
   const {
     body: { key }
   } = req;
-  const user = await User.findOne({ verifyKey: qs.unescape(key) });
+  const user = await User.findOne({ verifyKey: key });
   if (user.length !== 0) {
     await User.findOneAndUpdate({ verifyKey: key }, { emailVerified: true });
-    res.json({ username: user.name, verify: '"Success"' });
+    res.json({ verify: true });
   } else {
-    res.json({ username: user.name, verify: '"Fail"' });
+    res.json({ verify: false });
   }
 };
 
@@ -90,6 +90,8 @@ export const checkAuth = async (req, res, next) => {
   }
 };
 export const logout = (req, res) => {
+  console.log("hi");
+
   req.logout();
   res.redirect(routes.home);
 };
