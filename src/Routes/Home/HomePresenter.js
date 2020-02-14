@@ -5,9 +5,10 @@ import { color } from "Components/variable";
 import { Link } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Header from "Components/Header";
-import Content from "Components/Content";
+import ContentFrames from "Components/ContentFrame";
 import FriendChat from "Components/FriendChat";
 import MainFrame from "Components/Frame";
+
 const GlobalStyles = createGlobalStyle`
   html{
     background-color:${color.fbWhite};
@@ -163,7 +164,7 @@ const HomePresenter = ({ login = true, nickname, avatarUrl }) => (
         <Header login={login} nickname={nickname} avatarUrl={avatarUrl} />
         <MainFrame>
           <>
-            <Content nickname={nickname} avatarUrl={avatarUrl} />
+            <ContentFrames nickname={nickname} avatarUrl={avatarUrl} />
             <FriendChat />
           </>
         </MainFrame>
