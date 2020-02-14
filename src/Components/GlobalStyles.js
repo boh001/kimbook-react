@@ -10,9 +10,14 @@ export const GlobalStyles = createGlobalStyle`
     *{
         box-sizing:border-box;
     }
-    body{
-        height: 2000px;
-        padding-top: 50px;
+    html{
         background-color: ${color.fbBg};
+        width:100%;
+        height:100%;
+    }
+    body{
+        width:100%;
+        height:100%;
+        box-sizing:border-box;
     }
 `;

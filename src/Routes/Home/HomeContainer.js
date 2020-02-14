@@ -19,7 +19,6 @@ export default class extends React.Component {
     const {
       user: { login, nickname, avatarUrl }
     } = this.state;
-
     return (
       <>
         <HomePresenter

@@ -1,13 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { color } from "../../Components/variable";
+import { color } from "Components/variable";
 import { Link } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import Header from "../../Components/Header";
+import Header from "Components/Header";
+import Content from "Components/Content";
+import FriendChat from "Components/FriendChat";
+import MainFrame from "Components/Frame";
 const GlobalStyles = createGlobalStyle`
-  body{
+  html{
     background-color:${color.fbWhite};
+
 }`;
 const MainHome = styled.div`
   margin: 0px 10px 0px 10px;
@@ -152,10 +156,18 @@ const HomeJoin = styled(Link)`
   text-decoration: none;
   font-size: 15px;
 `;
-const HomePresenter = ({ login, nickname, avatarUrl }) => (
+const HomePresenter = ({ login = true, nickname, avatarUrl }) => (
   <>
     {login ? (
-      <Header login={login} nickname={nickname} avatarUrl={avatarUrl} />
+      <>
+        <Header login={login} nickname={nickname} avatarUrl={avatarUrl} />
+        <MainFrame>
+          <>
+            <Content nickname={nickname} avatarUrl={avatarUrl} />
+            <FriendChat />
+          </>
+        </MainFrame>
+      </>
     ) : (
       <MainHome>
         <GlobalStyles />
