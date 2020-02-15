@@ -4,6 +4,7 @@ const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
 const AUTH = "/auth";
+const MAKE = "/make";
 const SEARCH = "/search";
 
 //API
@@ -22,6 +23,7 @@ const EDITPROFILE = "/:id/editProfile";
 
 const routes = {
   home: HOME,
+  make: MAKE,
   search: SEARCH,
   user: USER,
   join: JOIN,

@@ -8,7 +8,7 @@ import Header from "Components/Header";
 import ContentFrames from "Components/ContentFrame";
 import FriendChat from "Components/FriendChat";
 import MainFrame from "Components/Frame";
-
+import Store from "store";
 const GlobalStyles = createGlobalStyle`
   html{
     background-color:${color.fbWhite};
@@ -157,64 +157,68 @@ const HomeJoin = styled(Link)`
   text-decoration: none;
   font-size: 15px;
 `;
-const HomePresenter = ({ login = true, nickname, avatarUrl }) => (
-  <>
-    {login ? (
-      <>
-        <Header login={login} nickname={nickname} avatarUrl={avatarUrl} />
-        <MainFrame>
+const HomePresenter = () => (
+  <Store.Consumer>
+    {store =>
+      store.user.login ? (
+        <>
+          <Header />
+          <MainFrame>
+            <>
+              <ContentFrames />
+              <FriendChat />
+            </>
+          </MainFrame>
+        </>
+      ) : (
+        <MainHome>
           <>
-            <ContentFrames nickname={nickname} avatarUrl={avatarUrl} />
-            <FriendChat />
+            <GlobalStyles />
+            <HomeTheme>
+              <ThemeMain>Kimbook(Facebook Clone)</ThemeMain>
+              <ThemeUl>
+                <UlSpan>Programming Language</UlSpan>
+                <UlLi>Backend : NodeJS(Express)</UlLi>
+                <UlLi>FrontEnd : ReactJS</UlLi>
+              </ThemeUl>
+              <ThemeUl>
+                <UlSpan>Function</UlSpan>
+                <UlLi>Upload Contents</UlLi>
+                <UlLi>Like Button</UlLi>
+                <UlLi>Find Friends</UlLi>
+                <UlLi>Comment</UlLi>
+                <UlLi>Realtime Chat(socket.io)</UlLi>
+              </ThemeUl>
+              <ThemeUl>
+                <UlSpan>Hosting</UlSpan>
+                <UlLi>Server : Heroku</UlLi>
+                <UlLi>DB : MongoAtlas</UlLi>
+                <UlLi>Storage : AWS-s3</UlLi>
+              </ThemeUl>
+            </HomeTheme>
+            <HomeLogin>
+              <Wrap>
+                <Label>아이디</Label>
+                <LoginId></LoginId>
+              </Wrap>
+              <Wrap>
+                <Label>비밀번호</Label>
+                <LoginPwd></LoginPwd>
+              </Wrap>
+              <LoginSubmit></LoginSubmit>
+              <FindPwd to="/find">계정을 잊으셨나요?</FindPwd>
+              <Line>
+                <HrLine />
+                <HrText>또는</HrText>
+                <HrLine />
+              </Line>
+              <HomeJoin to="/join">새 계정 만들기</HomeJoin>
+            </HomeLogin>
           </>
-        </MainFrame>
-      </>
-    ) : (
-      <MainHome>
-        <GlobalStyles />
-        <HomeTheme>
-          <ThemeMain>Kimbook(Facebook Clone)</ThemeMain>
-          <ThemeUl>
-            <UlSpan>Programming Language</UlSpan>
-            <UlLi>Backend : NodeJS(Express)</UlLi>
-            <UlLi>FrontEnd : ReactJS</UlLi>
-          </ThemeUl>
-          <ThemeUl>
-            <UlSpan>Function</UlSpan>
-            <UlLi>Upload Contents</UlLi>
-            <UlLi>Like Button</UlLi>
-            <UlLi>Find Friends</UlLi>
-            <UlLi>Comment</UlLi>
-            <UlLi>Realtime Chat(socket.io)</UlLi>
-          </ThemeUl>
-          <ThemeUl>
-            <UlSpan>Hosting</UlSpan>
-            <UlLi>Server : Heroku</UlLi>
-            <UlLi>DB : MongoAtlas</UlLi>
-            <UlLi>Storage : AWS-s3</UlLi>
-          </ThemeUl>
-        </HomeTheme>
-        <HomeLogin>
-          <Wrap>
-            <Label>아이디</Label>
-            <LoginId></LoginId>
-          </Wrap>
-          <Wrap>
-            <Label>비밀번호</Label>
-            <LoginPwd></LoginPwd>
-          </Wrap>
-          <LoginSubmit></LoginSubmit>
-          <FindPwd to="/find">계정을 잊으셨나요?</FindPwd>
-          <Line>
-            <HrLine />
-            <HrText>또는</HrText>
-            <HrLine />
-          </Line>
-          <HomeJoin to="/join">새 계정 만들기</HomeJoin>
-        </HomeLogin>
-      </MainHome>
-    )}
-  </>
+        </MainHome>
+      )
+    }
+  </Store.Consumer>
 );
 
 export default HomePresenter;

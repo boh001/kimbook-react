@@ -7,6 +7,7 @@ import { Avatar2 } from "./Avatar";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Content from "./Content";
+import Store from "store";
 
 const ContentFilter = styled.div`
   top: 40px;
@@ -26,7 +27,7 @@ const ContentFrame = styled.div`
   margin: 0px 15px 0px 15px;
 `;
 const MakerForm = styled.form.attrs({
-  action: "/",
+  action: "/make",
   method: "post",
   encType: "multipart/form-data"
 })`
@@ -114,33 +115,44 @@ const FormStatic = styled.div`
   padding: 3px;
   width: 100%;
 `;
-const ContentFrames = ({ nickname, avatarUrl }) => (
-  <>
-    <ContentFilter>
-      <div>hi</div>
-    </ContentFilter>
-    <ContentFrame>
-      <MakerForm>
-        <ContentMaker>
-          <MakerName>게시물 만들기</MakerName>
-          <FormText>
-            <TextAvatar to="/login">
-              <Avatar2 avatarUrl={avatarUrl} />
-            </TextAvatar>
-            <TextInput nickname={nickname} />
-          </FormText>
-          <FormStatic>
-            <StaticLabel>
-              <FontAwesomeIcon icon={faImage} size="lg" />
-              &nbsp; 사진 / 동영상
-            </StaticLabel>
-            <StaticInput />
-          </FormStatic>
-        </ContentMaker>
-      </MakerForm>
-      <Content />
-    </ContentFrame>
-  </>
+const ContentFrames = () => (
+  <Store.Consumer>
+    {store => {
+      const {
+        user: { nickname, avatarUrl }
+      } = store;
+      console.log(avatarUrl);
+
+      return (
+        <>
+          <ContentFilter>
+            <div>hi</div>
+          </ContentFilter>
+          <ContentFrame>
+            <MakerForm>
+              <ContentMaker>
+                <MakerName>게시물 만들기</MakerName>
+                <FormText>
+                  <TextAvatar to="/login">
+                    <Avatar2 avatarUrl={avatarUrl} />
+                  </TextAvatar>
+                  <TextInput nickname={nickname} />
+                </FormText>
+                <FormStatic>
+                  <StaticLabel>
+                    <FontAwesomeIcon icon={faImage} size="lg" />
+                    &nbsp; 사진 / 동영상
+                  </StaticLabel>
+                  <StaticInput />
+                </FormStatic>
+              </ContentMaker>
+            </MakerForm>
+            <Content />
+          </ContentFrame>
+        </>
+      );
+    }}
+  </Store.Consumer>
 );
 
 export default ContentFrames;
