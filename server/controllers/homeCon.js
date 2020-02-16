@@ -3,6 +3,8 @@ import Content from "../models/Content";
 import User from "../models/User";
 
 export const checkHome = async (req, res) => {
+  console.log("hi");
+
   if (!req.user) {
     res.json({ user: { login: false } });
   } else {

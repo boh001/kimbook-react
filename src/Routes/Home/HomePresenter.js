@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { color } from "Components/variable";
@@ -8,7 +8,7 @@ import Header from "Components/Header";
 import ContentFrames from "Components/ContentFrame";
 import FriendChat from "Components/FriendChat";
 import MainFrame from "Components/Frame";
-import Store from "store";
+import { useUser } from "store";
 const GlobalStyles = createGlobalStyle`
   html{
     background-color:${color.fbWhite};
@@ -157,15 +157,18 @@ const HomeJoin = styled(Link)`
   text-decoration: none;
   font-size: 15px;
 `;
-const HomePresenter = () => (
-  <Store.Consumer>
-    {store =>
-      store.user.login ? (
+
+const HomePresenter = () => {
+  const login = useUser();
+
+  return (
+    <>
+      {login ? (
         <>
           <Header />
           <MainFrame>
             <>
-              <ContentFrames />
+              {/* <ContentFrames /> */}
               <FriendChat />
             </>
           </MainFrame>
@@ -216,9 +219,9 @@ const HomePresenter = () => (
             </HomeLogin>
           </>
         </MainHome>
-      )
-    }
-  </Store.Consumer>
-);
+      )}
+    </>
+  );
+};
 
 export default HomePresenter;
