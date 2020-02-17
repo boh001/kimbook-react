@@ -10,9 +10,8 @@ export const postJoin = async (req, res, next) => {
     body: { name, nickname, email, password, password2 }
   } = req;
   const {
-    file: { path }
+    file: { location }
   } = req;
-
   const keyOne = crypto
     .randomBytes(256)
     .toString("hex")
@@ -29,7 +28,7 @@ export const postJoin = async (req, res, next) => {
   } else {
     try {
       const newUser = await User({
-        avatarUrl: path,
+        avatarUrl: location,
         name,
         nickname,
         email,
@@ -92,7 +91,7 @@ export const logout = (req, res) => {
   console.log("1", req.user);
 
   req.logout();
-  console.log("2", req.user);
+  res.redirect(routes.home);
 };
 export const profile = (req, res) => {
   res.render("profile");

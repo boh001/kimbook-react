@@ -17,6 +17,6 @@ initRouter.post(routes.home, checkHome);
 initRouter.post(routes.make, contentUpload, makeContent);
 initRouter.post(routes.join, contentUpload, postJoin, verifyEmail);
 initRouter.post(routes.login, checkAuth, postLogin);
-initRouter.get(routes.logout, logout);
+initRouter.post(routes.logout, logout);
 initRouter.post(routes.auth, postAuth);
 export default initRouter;

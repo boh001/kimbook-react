@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKickstarter } from "@fortawesome/free-brands-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { color } from "./variable";
-import Store from "store";
+import { useUser } from "store";
 import { Avatar3 } from "./Avatar";
+import { logout } from "./api";
 
 const Header = styled.header`
   position: fixed;
@@ -73,58 +74,64 @@ const HeaderUsers = styled.div`
   align-items: center;
   font-size: 12px;
 `;
-const HLink = styled(Link)``;
+const HLink = styled(Link)`
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 5px;
+`;
 const UsersJoin = styled.div`
+  display: flex;
+  align-items: center;
   margin-right: 10px;
 `;
 const UsersLogin = styled.div``;
-export default () => (
-  <Store.Consumer>
-    {store => {
-      const {
-        user: { login, nickname, avatarUrl }
-      } = store;
-      return (
-        <Header>
-          <HeaderSearch>
-            <SearchHome>
-              <HLink to="/">
-                <FontAwesomeIcon icon={faKickstarter} size="lg" />
+export default () => {
+  if (useUser()) {
+    var { login, nickname, avatarUrl } = useUser();
+  } else {
+    var login = false;
+  }
+  return (
+    <Header>
+      <HeaderSearch>
+        <SearchHome>
+          <HLink to="/">
+            <FontAwesomeIcon icon={faKickstarter} size="lg" />
+          </HLink>
+        </SearchHome>
+        <SearchBar>
+          <BarForm>
+            <BarInput />
+            <BarSubmit>
+              <FontAwesomeIcon icon={faSearch} />
+            </BarSubmit>
+          </BarForm>
+        </SearchBar>
+      </HeaderSearch>
+      <HeaderUsers>
+        {login ? (
+          <>
+            <UsersJoin>
+              <Avatar3 avatarUrl={avatarUrl} />
+              <HLink to="/join">{nickname}</HLink>
+            </UsersJoin>
+            <UsersLogin>
+              <HLink to="/" onClick={() => logout()}>
+                로그아웃
               </HLink>
-            </SearchHome>
-            <SearchBar>
-              <BarForm>
-                <BarInput></BarInput>
-                <BarSubmit>
-                  <FontAwesomeIcon icon={faSearch} />
-                </BarSubmit>
-              </BarForm>
-            </SearchBar>
-          </HeaderSearch>
-          <HeaderUsers>
-            {login ? (
-              <>
-                <UsersJoin>
-                  <Avatar3 avatarUrl={avatarUrl} />
-                  <HLink to="/join">{nickname}</HLink>
-                </UsersJoin>
-                <UsersLogin>
-                  <HLink to="/logout">로그아웃</HLink>
-                </UsersLogin>
-              </>
-            ) : (
-              <>
-                <UsersJoin>
-                  <HLink to="/join">회원가입</HLink>
-                </UsersJoin>
-                <UsersLogin>
-                  <HLink to="/login">로그인</HLink>
-                </UsersLogin>
-              </>
-            )}
-          </HeaderUsers>
-        </Header>
-      );
-    }}
-  </Store.Consumer>
-);
+            </UsersLogin>
+          </>
+        ) : (
+          <>
+            <UsersJoin>
+              <HLink to="/join">회원가입</HLink>
+            </UsersJoin>
+            <UsersLogin>
+              <HLink to="/login">로그인</HLink>
+            </UsersLogin>
+          </>
+        )}
+      </HeaderUsers>
+    </Header>
+  );
+};

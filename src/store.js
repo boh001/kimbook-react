@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 const Store = React.createContext(null);
-const HomeContext = React.createContext();
+const HomeContext = React.createContext("");
 export const Home = ({ user, contents, children }) => {
   return (
     <HomeContext.Provider value={{ user, contents }}>

@@ -159,7 +159,7 @@ const HomeJoin = styled(Link)`
 `;
 
 const HomePresenter = () => {
-  const login = useUser();
+  const { login } = useUser();
 
   return (
     <>
@@ -168,7 +168,7 @@ const HomePresenter = () => {
           <Header />
           <MainFrame>
             <>
-              {/* <ContentFrames /> */}
+              <ContentFrames />
               <FriendChat />
             </>
           </MainFrame>

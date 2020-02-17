@@ -23,12 +23,7 @@ export default class extends React.Component {
   }
   render() {
     const { user, contents } = this.state;
-    console.log(user);
-
     return (
-      // <Store.Provider value={this.state}>
-      //   <HomePresenter />
-      // </Store.Provider>
       <Home user={user} contents={contents}>
         <HomePresenter />
       </Home>

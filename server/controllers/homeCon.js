@@ -47,16 +47,15 @@ export const makeContent = async (req, res) => {
     body: { text }
   } = req;
   const {
-    file: { path, mimetype }
+    file: { location, mimetype }
   } = req;
-
   const {
     user: { id }
   } = req;
   try {
     await Content.create({
       authorId: id,
-      fileUrl: path,
+      fileUrl: location,
       contentType: mimetype,
       text
     });
