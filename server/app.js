@@ -11,6 +11,7 @@ import "./passport";
 import { globalVariable } from "./middleware";
 import dotenv from "dotenv";
 import initRouter from "./routers/initRouter";
+import apiRouter from "./routers/apiRouter";
 dotenv.config();
 
 const app = express();
@@ -33,4 +34,5 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(routes.home, initRouter);
+app.use(routes.api, apiRouter);
 export default app;

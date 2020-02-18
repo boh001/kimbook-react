@@ -5,3 +5,9 @@ const api = axios.create({
 });
 
 export const logout = () => api.post("logout");
+export const upLike = id => {
+  const data = {
+    id
+  };
+  return api.post(`api/${id}/like`, data);
+};

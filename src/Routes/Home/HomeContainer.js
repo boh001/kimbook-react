@@ -2,6 +2,7 @@ import React from "react";
 import HomePresenter from "./HomePresenter";
 import { Home } from "store";
 import { loginChecker } from "./api";
+import { useSetTest, useUser } from "../../store";
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +13,8 @@ export default class extends React.Component {
   }
 
   async componentDidMount() {
+    console.log("hi");
+
     try {
       const {
         data: { user, contents }
@@ -21,10 +24,13 @@ export default class extends React.Component {
       console.log(error);
     }
   }
+
   render() {
-    const { user, contents } = this.state;
+    const { user, contents, like } = this.state;
+    console.log(user);
+
     return (
-      <Home user={user} contents={contents}>
+      <Home user={user} atest={user} contents={contents}>
         <HomePresenter />
       </Home>
     );

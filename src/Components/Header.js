@@ -20,17 +20,19 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
   color: white;
-
+  z-index: 99;
   a:visited {
     color: white;
   }
 `;
 const HeaderSearch = styled.div`
   margin-right: 90px;
+  flex: none;
   display: flex;
   align-items: center;
 `;
 const SearchHome = styled.div`
+  flex: none;
   margin-right: 7px;
 `;
 const SearchBar = styled.div``;
@@ -40,6 +42,7 @@ const BarForm = styled.form.attrs({
 })`
   width: 385px;
   position: relative;
+  flex: none;
   display: flex;
   align-items: center;
 `;
@@ -54,6 +57,7 @@ const BarInput = styled.input.attrs({
   height: 20px;
   border-radius: 2px 0 0 2px;
   outline: none;
+  flex: none;
 `;
 const BarSubmit = styled.button.attrs({
   type: "submit",
@@ -68,21 +72,26 @@ const BarSubmit = styled.button.attrs({
   border-radius: 0 2px 2px 0;
   cursor: pointer;
   font-size: 15px;
+  flex: none;
 `;
 const HeaderUsers = styled.div`
   display: flex;
   align-items: center;
   font-size: 12px;
+  flex: none;
 `;
 const HLink = styled(Link)`
+  width: 100%;
   font-size: 15px;
   font-weight: bold;
   margin-left: 5px;
+  flex: none;
 `;
 const UsersJoin = styled.div`
   display: flex;
   align-items: center;
   margin-right: 10px;
+  flex: none;
 `;
 const UsersLogin = styled.div``;
 export default () => {

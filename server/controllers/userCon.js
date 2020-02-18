@@ -88,8 +88,6 @@ export const checkAuth = async (req, res, next) => {
   }
 };
 export const logout = (req, res) => {
-  console.log("1", req.user);
-
   req.logout();
   res.redirect(routes.home);
 };

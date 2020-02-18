@@ -7,14 +7,18 @@ import { Avatar2 } from "./Avatar";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Content from "./Content";
-import { useUser } from "store";
+import { useUser, useContents } from "store";
 
 const ContentFilter = styled.div`
-  top: 40px;
-  left: 0;
+  display: flex;
+  justify-content: flex-end;
   width: 100%;
+`;
+const FilterList = styled.div`
+  position: fixed;
+  width: 250px;
   height: 100vh;
-  border: 1px solid ${color.fbLine};
+  border-right: 1px solid ${color.fbLine};
 `;
 const ContentFrame = styled.div`
   display: flex;
@@ -115,12 +119,13 @@ const FormStatic = styled.div`
   padding: 3px;
   width: 100%;
 `;
-const ContentFrames = () => {
+export default () => {
   const { nickname, avatarUrl } = useUser();
+  const contents = useContents();
   return (
     <>
       <ContentFilter>
-        <div>hi</div>
+        <FilterList>hi</FilterList>
       </ContentFilter>
       <ContentFrame>
         <MakerForm>
@@ -141,10 +146,8 @@ const ContentFrames = () => {
             </FormStatic>
           </ContentMaker>
         </MakerForm>
-        <Content />
+        <Content contents={contents} avatarUrl={avatarUrl} />
       </ContentFrame>
     </>
   );
 };
-
-export default ContentFrames;

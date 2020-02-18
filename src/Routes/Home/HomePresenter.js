@@ -5,7 +5,7 @@ import { color } from "Components/variable";
 import { Link } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Header from "Components/Header";
-import ContentFrames from "Components/ContentFrame";
+import ContentFrame from "Components/ContentFrame";
 import FriendChat from "Components/FriendChat";
 import MainFrame from "Components/Frame";
 import { useUser } from "store";
@@ -160,6 +160,7 @@ const HomeJoin = styled(Link)`
 
 const HomePresenter = () => {
   const { login } = useUser();
+  console.log(login);
 
   return (
     <>
@@ -168,7 +169,7 @@ const HomePresenter = () => {
           <Header />
           <MainFrame>
             <>
-              <ContentFrames />
+              <ContentFrame />
               <FriendChat />
             </>
           </MainFrame>
