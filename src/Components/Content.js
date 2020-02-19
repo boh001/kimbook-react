@@ -1,14 +1,14 @@
-import React, { createRef, Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faCommentDots } from "@fortawesome/free-regular-svg-icons";
 import { color } from "./variable";
-import { useContents, useUser, useSetLike } from "store";
 import { Avatar3 } from "./Avatar";
-import Comment from "./Comment";
-import { upLike } from "./api";
+import Comments from "./Comments";
+import { upLike, apiContents } from "./api";
+
 const ContentWrap = styled.div.attrs(props => {
   return {
     id: props.ID
@@ -117,197 +117,91 @@ class Content extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      like: 0
+      like: this.props.like,
+      view: this.props.view,
+      comments: this.props.comments
     };
-    console.log(props);
   }
-  componentDidMount() {}
+
+  LikeJs = async e => {
+    e.preventDefault();
+    const main = e.currentTarget.parentNode.parentNode.parentNode;
+    const {
+      data: { body }
+    } = await upLike(main.id);
+    return this.setState({ like: body });
+  };
+  ShowComment = e => {
+    const comment = e.currentTarget.parentNode.parentNode.nextSibling;
+    comment.style.display = "flex";
+    return false;
+  };
   render() {
+    const {
+      id,
+      contentType,
+      text,
+      fileUrl,
+      createdAt,
+      nickname,
+      avatarUrl,
+      comments
+    } = this.props;
     const { like } = this.state;
-    console.log(like);
+    const { view } = this.state;
 
-    const { contents, avatarUrl } = this.props;
-    const likejs = async e => {
-      e.preventDefault();
-      const main = e.target.parentNode.parentNode.parentNode.parentNode;
-      const {
-        data: { body }
-      } = await upLike(main.id);
-      return this.setState({ like: body });
-    };
-    return contents.map((content, key) => {
-      const {
-        _id,
-        contentType,
-        comments,
-        like,
-        view,
-        text,
-        fileUrl,
-        createdAt,
-        authorId: { nickname }
-      } = content;
-      console.log(like);
-
-      return (
-        <ContentWrap ID={_id}>
+    return (
+      <ContentWrap ID={id}>
+        <>
+          <ContentInfo>
+            <InfoAuthor>
+              <Avatar3 avatarUrl={avatarUrl} />
+              <AuthorName>{nickname}</AuthorName>
+            </InfoAuthor>
+            <h1>{moment(createdAt).format("LL")}</h1>
+          </ContentInfo>
+          <ContentText>{text}</ContentText>
           <>
-            <ContentInfo>
-              <InfoAuthor>
-                <Avatar3 avatarUrl={avatarUrl} />
-                <AuthorName>{nickname}</AuthorName>
-              </InfoAuthor>
-              <h1>{moment(createdAt).format("LL")}</h1>
-            </ContentInfo>
-            <ContentText>{text}</ContentText>
             {contentType.split("/")[0] === "video" ? (
-              <>
-                <ContentVideo key={key} src={fileUrl} type={contentType} />
-                <ContentReact>
-                  <ReactLike>
-                    <LikeIcon>
-                      <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-                    </LikeIcon>
-                    <LikeCount>{like}</LikeCount>
-                  </ReactLike>
-                  <ReactInfo>
-                    <InfoReply>댓글</InfoReply>
-                    <InfoReply>{comments.length}</InfoReply>
-                    <InfoReply>조회수</InfoReply>
-                    <InfoReply>{view}</InfoReply>
-                  </ReactInfo>
-                </ContentReact>
-              </>
+              <ContentVideo src={fileUrl} type={contentType} />
             ) : (
-              <>
-                <ContentImage key={key} src={fileUrl} />
-                <ContentReact>
-                  <ReactLike>
-                    <LikeIcon>
-                      <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-                    </LikeIcon>
-                    <LikeCount>{like}</LikeCount>
-                  </ReactLike>
-                  <ReactInfo>
-                    <InfoReply>댓글</InfoReply>
-                    <InfoReply>{comments.length}</InfoReply>
-                  </ReactInfo>
-                </ContentReact>
-              </>
+              <ContentImage src={fileUrl} />
             )}
-            <ContentAction>
-              <Action>
-                <ActionIcon>
+            <ContentReact>
+              <ReactLike>
+                <LikeIcon>
                   <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-                  <LikeBtn onClick={e => likejs(e)}>좋아요</LikeBtn>
-                </ActionIcon>
-                <ActionIcon>
-                  <FontAwesomeIcon icon={faCommentDots} size="lg" />
-                  <ReplyBtn>댓글</ReplyBtn>
-                </ActionIcon>
-                <ActionIcon>
-                  <ShareBtn>공유하기</ShareBtn>
-                </ActionIcon>
-              </Action>
-            </ContentAction>
-            <Comment />
+                </LikeIcon>
+                <LikeCount>{like}</LikeCount>
+              </ReactLike>
+              <ReactInfo>
+                <InfoReply>댓글</InfoReply>
+                <InfoReply>{comments.length}</InfoReply>
+                <InfoReply>조회수</InfoReply>
+                <InfoReply>{view}</InfoReply>
+              </ReactInfo>
+            </ContentReact>
           </>
-        </ContentWrap>
-      );
-    });
+          <ContentAction>
+            <Action>
+              <ActionIcon onClick={e => this.LikeJs(e)}>
+                <FontAwesomeIcon icon={faThumbsUp} size="lg" />
+                <LikeBtn>좋아요</LikeBtn>
+              </ActionIcon>
+              <ActionIcon onClick={e => this.ShowComment(e)}>
+                <FontAwesomeIcon icon={faCommentDots} size="lg" />
+                <ReplyBtn>댓글</ReplyBtn>
+              </ActionIcon>
+              <ActionIcon>
+                <ShareBtn>공유하기</ShareBtn>
+              </ActionIcon>
+            </Action>
+          </ContentAction>
+          <Comments id={id} comments={comments} />
+        </>
+      </ContentWrap>
+    );
   }
 }
-// const Content = () => {
-//   const { nickname, avatarUrl } = useUser();
-//   const setLike = useSetLike();
-//   const contents = useContents();
-//   const likejs = async e => {
-//     e.preventDefault();
-//     const main = e.target.parentNode.parentNode.parentNode.parentNode;
-//     const {
-//       data: { body }
-//     } = await upLike(main.id);
-//     console.log(body);
-//     setLike(body);
-//   };
 
-//   return contents.map((content, key) => {
-//     const {
-//       _id,
-//       contentType,
-//       comments,
-//       like,
-//       view,
-//       text,
-//       fileUrl,
-//       createdAt,
-//       authorId: { nickname }
-//     } = content;
-//     return (
-//       <ContentWrap ID={_id}>
-//         <>
-//           <ContentInfo>
-//             <InfoAuthor>
-//               <Avatar3 avatarUrl={avatarUrl} />
-//               <AuthorName>{nickname}</AuthorName>
-//             </InfoAuthor>
-//             <h1>{moment(createdAt).format("LL")}</h1>
-//           </ContentInfo>
-//           <ContentText>{text}</ContentText>
-//           {contentType.split("/")[0] === "video" ? (
-//             <>
-//               <ContentVideo key={key} src={fileUrl} type={contentType} />
-//               <ContentReact>
-//                 <ReactLike>
-//                   <LikeIcon>
-//                     <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-//                   </LikeIcon>
-//                   <LikeCount>{like}</LikeCount>
-//                 </ReactLike>
-//                 <ReactInfo>
-//                   <InfoReply>댓글</InfoReply>
-//                   <InfoReply>{comments.length}</InfoReply>
-//                   <InfoReply>조회수</InfoReply>
-//                   <InfoReply>{view}</InfoReply>
-//                 </ReactInfo>
-//               </ContentReact>
-//             </>
-//           ) : (
-//             <>
-//               <ContentImage key={key} src={fileUrl} />
-//               <ContentReact>
-//                 <ReactLike>
-//                   <LikeIcon>
-//                     <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-//                   </LikeIcon>
-//                   <LikeCount>{like}</LikeCount>
-//                 </ReactLike>
-//                 <ReactInfo>
-//                   <InfoReply>댓글</InfoReply>
-//                   <InfoReply>{comments.length}</InfoReply>
-//                 </ReactInfo>
-//               </ContentReact>
-//             </>
-//           )}
-//           <ContentAction>
-//             <Action>
-//               <ActionIcon>
-//                 <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-//                 <LikeBtn onClick={e => likejs(e)}>좋아요</LikeBtn>
-//               </ActionIcon>
-//               <ActionIcon>
-//                 <FontAwesomeIcon icon={faCommentDots} size="lg" />
-//                 <ReplyBtn>댓글</ReplyBtn>
-//               </ActionIcon>
-//               <ActionIcon>
-//                 <ShareBtn>공유하기</ShareBtn>
-//               </ActionIcon>
-//             </Action>
-//           </ContentAction>
-//           <Comment />
-//         </>
-//       </ContentWrap>
-//     );
-//   });
-// };
 export default Content;

@@ -1,27 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 const Store = React.createContext(null);
 const HomeContext = React.createContext("");
-export const Home = ({ user, atest, contents, children }) => {
-  const [like, setLike] = useState(0);
-  const [test, setTest] = useState(atest);
-
+export const Home = ({ user, children }) => {
   return (
-    <HomeContext.Provider value={{ user, setLike, contents }}>
-      {children}
-    </HomeContext.Provider>
+    <HomeContext.Provider value={{ user }}>{children}</HomeContext.Provider>
   );
 };
 export const useUser = () => {
   const { user } = useContext(HomeContext);
   return user;
 };
-export const useSetLike = () => {
-  const { setLike } = useContext(HomeContext);
-  return setLike;
-};
-export const useContents = () => {
-  const { contents } = useContext(HomeContext);
-  return contents;
-};
+
 export default Store;

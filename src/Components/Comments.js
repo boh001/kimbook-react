@@ -4,8 +4,9 @@ import styled from "styled-components";
 import { color } from "Components/variable";
 import { Avatar3 } from "./Avatar";
 import { useUser } from "store";
+import { apiComment } from "./api";
 const Comments = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   padding: 10px;
@@ -30,13 +31,20 @@ const UpInput = styled.input.attrs({
   padding-left: 15px;
   background-color: ${color.fbBg};
 `;
-export default () => {
+const CommentsWrite = (e, id) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    apiComment(id, e.currentTarget.value);
+    e.currentTarget.value = "";
+  }
+};
+export default ({ id }) => {
   const { nickname, avatarUrl } = useUser();
   return (
     <Comments>
       <CommentsUp>
         <Avatar3 avatarUrl={avatarUrl} />
-        <UpInput />
+        <UpInput onKeyUp={e => CommentsWrite(e, id)} />
       </CommentsUp>
     </Comments>
   );

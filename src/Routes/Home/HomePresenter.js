@@ -160,8 +160,6 @@ const HomeJoin = styled(Link)`
 
 const HomePresenter = () => {
   const { login } = useUser();
-  console.log(login);
-
   return (
     <>
       {login ? (

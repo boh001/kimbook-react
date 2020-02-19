@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import { Avatar2 } from "./Avatar";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Content from "./Content";
-import { useUser, useContents } from "store";
+import Contents from "./Contents";
+import { useUser } from "store";
 
 const ContentFilter = styled.div`
   display: flex;
@@ -121,7 +121,6 @@ const FormStatic = styled.div`
 `;
 export default () => {
   const { nickname, avatarUrl } = useUser();
-  const contents = useContents();
   return (
     <>
       <ContentFilter>
@@ -146,7 +145,7 @@ export default () => {
             </FormStatic>
           </ContentMaker>
         </MakerForm>
-        <Content contents={contents} avatarUrl={avatarUrl} />
+        <Contents avatarUrl={avatarUrl} />
       </ContentFrame>
     </>
   );

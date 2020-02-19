@@ -1,7 +1,37 @@
 import Content from "../models/Content";
 import Comment from "../models/Comment";
 import User from "../models/User";
-
+export const apiContents = async (req, res) => {
+  try {
+    const contents = await Content.find({}).populate([
+      {
+        path: "comments",
+        model: "Comment",
+        populate: [
+          {
+            path: "author",
+            model: "User"
+          },
+          {
+            path: "comments",
+            model: "Comment",
+            populate: {
+              path: "author",
+              model: "User"
+            }
+          }
+        ]
+      },
+      {
+        path: "authorId",
+        model: "User"
+      }
+    ]);
+    res.json({ contents });
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const apiLike = async (req, res) => {
   const {
     body: { id }
@@ -9,8 +39,6 @@ export const apiLike = async (req, res) => {
   const {
     user: { _id }
   } = req;
-  console.log(req.user, req.body);
-
   try {
     const content = await Content.findOne({ _id: id });
     const likeUsers = content.likeUsers;
@@ -20,25 +48,12 @@ export const apiLike = async (req, res) => {
         $pull: { likeUsers: _id }
       });
       res.json({ body: 0 });
-      // res.send({
-      //   headers: {
-      //     "Content-Type": "text/html"
-      //   },
-      //   body: -1
-      // });
     } else {
       await content.updateOne({
         $inc: { like: 1 },
         $push: { likeUsers: _id }
       });
       res.json({ body: 1 });
-      //   res.send({
-      //     headers: {
-      //       "Content-Type": "text/html"
-      //     },
-      //     body: 1
-      //   });
-      //
     }
   } catch (error) {
     console.log(error);
@@ -64,15 +79,17 @@ export const apiView = async (req, res) => {
 };
 export const apiComment = async (req, res) => {
   const {
-    body: { id, text }
+    body: { id, comment }
   } = req;
+  console.log(req.body);
+
   const {
     user: { _id }
   } = req;
   try {
     const newComment = await Comment.create({
       author: _id,
-      description: text
+      description: comment
     });
     await Content.findOneAndUpdate(
       { _id: id },

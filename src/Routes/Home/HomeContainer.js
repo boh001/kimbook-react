@@ -2,35 +2,29 @@ import React from "react";
 import HomePresenter from "./HomePresenter";
 import { Home } from "store";
 import { loginChecker } from "./api";
-import { useSetTest, useUser } from "../../store";
 export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: { login: false },
-      contents: []
+      user: { login: false }
     };
   }
 
   async componentDidMount() {
-    console.log("hi");
-
     try {
       const {
-        data: { user, contents }
+        data: { user }
       } = await loginChecker();
-      this.setState({ user, contents });
+      this.setState({ user });
     } catch (error) {
       console.log(error);
     }
   }
 
   render() {
-    const { user, contents, like } = this.state;
-    console.log(user);
-
+    const { user } = this.state;
     return (
-      <Home user={user} atest={user} contents={contents}>
+      <Home user={user}>
         <HomePresenter />
       </Home>
     );

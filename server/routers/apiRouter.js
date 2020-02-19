@@ -6,11 +6,13 @@ import {
   apiComment,
   apiReComment,
   apiCommentLike,
-  apiPlusFriend
+  apiPlusFriend,
+  apiContents
 } from "../controllers/apiCon";
 
 const apiRouter = express.Router();
 
+apiRouter.post(routes.contents, apiContents);
 apiRouter.post(routes.like, apiLike);
 apiRouter.post(routes.view, apiView);
 apiRouter.post(routes.comment, apiComment);
