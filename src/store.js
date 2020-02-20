@@ -1,15 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
-const Store = React.createContext(null);
-const HomeContext = React.createContext("");
-export const Home = ({ user, children }) => {
+const HomeContext = React.createContext();
+export const Home = ({ initUser, initContents, children }) => {
   return (
-    <HomeContext.Provider value={{ user }}>{children}</HomeContext.Provider>
+    <HomeContext.Provider value={{ initUser, initContents }}>
+      {children}
+    </HomeContext.Provider>
   );
 };
 export const useUser = () => {
-  const { user } = useContext(HomeContext);
-  return user;
+  const { initUser } = useContext(HomeContext);
+  return initUser;
 };
-
-export default Store;
+export const useContents = () => {
+  const { initContents } = useContext(HomeContext);
+  return initContents;
+};

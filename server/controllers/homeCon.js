@@ -11,8 +11,35 @@ export const checkHome = async (req, res) => {
     const {
       user: { nickname, avatarUrl }
     } = req;
-
-    res.json({ user: { nickname, avatarUrl, login: true } });
+    try {
+      const contents = await Content.find({}).populate([
+        {
+          path: "comments",
+          model: "Comment",
+          populate: [
+            {
+              path: "author",
+              model: "User"
+            },
+            {
+              path: "comments",
+              model: "Comment",
+              populate: {
+                path: "author",
+                model: "User"
+              }
+            }
+          ]
+        },
+        {
+          path: "authorId",
+          model: "User"
+        }
+      ]);
+      res.json({ user: { nickname, avatarUrl, login: true }, contents });
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 export const makeContent = async (req, res) => {

@@ -11,11 +11,17 @@ export const upLike = id => {
   };
   return api.post(`api/${id}/like`, data);
 };
+export const upCommentLike = id => {
+  const data = {
+    id
+  };
+  return api.post(`api/${id}/commentLike`, data);
+};
 export const apiContents = () => api.post("api/contents");
 export const apiComment = (id, comment) => {
   const data = {
     id,
     comment
   };
-  api.post(`api/${id}/comment`, data);
+  return api.post(`api/${id}/comment`, data);
 };

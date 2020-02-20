@@ -81,31 +81,29 @@ export const apiComment = async (req, res) => {
   const {
     body: { id, comment }
   } = req;
-  console.log(req.body);
-
   const {
     user: { _id }
   } = req;
   try {
-    const newComment = await Comment.create({
+    const createComment = await Comment.create({
       author: _id,
       description: comment
     });
     await Content.findOneAndUpdate(
       { _id: id },
-      { $push: { comments: newComment._id } }
+      { $push: { comments: createComment._id } }
     );
-    const author = await User.findOne({ _id });
-    const content = await Content.findOne({ _id: id });
-    const reply = content.comments.length;
+    const newComment = await Comment.findOne({
+      _id: createComment._id
+    }).populate([
+      {
+        path: "author",
+        model: "User"
+      }
+    ]);
+    console.log(newComment);
 
-    res.status(200);
-    res.send({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: { author, reply, id: newComment.id }
-    });
+    res.json({ newComment });
   } catch (error) {
     console.log(error);
   }
@@ -148,6 +146,7 @@ export const apiCommentLike = async (req, res) => {
   const {
     user: { _id }
   } = req;
+
   try {
     const comment = await Comment.findOne({ _id: id });
     const likeUsers = comment.likeUsers;
@@ -157,24 +156,14 @@ export const apiCommentLike = async (req, res) => {
         $pull: { likeUsers: _id }
       });
       res.status(200);
-      res.send({
-        headers: {
-          "Content-Type": "text/html"
-        },
-        body: -1
-      });
+      res.json({ body: 0 });
     } else {
       await comment.updateOne({
         $inc: { like: 1 },
         $push: { likeUsers: _id }
       });
       res.status(200);
-      res.send({
-        headers: {
-          "Content-Type": "text/html"
-        },
-        body: 1
-      });
+      res.json({ body: 1 });
     }
   } catch (error) {
     console.log(error);

@@ -6,25 +6,28 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: { login: false }
+      user: { login: false },
+      contents: []
     };
   }
 
   async componentDidMount() {
     try {
       const {
-        data: { user }
+        data: { user, contents }
       } = await loginChecker();
-      this.setState({ user });
+      this.setState({ user, contents });
     } catch (error) {
       console.log(error);
     }
   }
 
   render() {
-    const { user } = this.state;
+    const { user, contents } = this.state;
+    console.log(user);
+
     return (
-      <Home user={user}>
+      <Home initUser={user} initContents={contents}>
         <HomePresenter />
       </Home>
     );

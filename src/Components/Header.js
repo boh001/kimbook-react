@@ -95,11 +95,7 @@ const UsersJoin = styled.div`
 `;
 const UsersLogin = styled.div``;
 export default () => {
-  if (useUser()) {
-    var { login, nickname, avatarUrl } = useUser();
-  } else {
-    var login = false;
-  }
+  const { login, avatarUrl, nickname } = useUser();
   return (
     <Header>
       <HeaderSearch>
