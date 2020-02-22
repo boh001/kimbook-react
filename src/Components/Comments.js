@@ -18,19 +18,26 @@ const CommentsUp = styled.div`
   justify-content: flex-start;
   align-items: center;
 `;
-const UpInput = styled.input.attrs({
-  type: "text",
+const UpInput = styled.textarea.attrs({
   name: "comment",
   placeholder: "댓글을 입력하세요..."
 })`
   word-wrap: break-word;
   width: 90%;
   height: 30px;
+  overflow: hidden;
   margin-left: 10px;
   border: none;
   border-radius: 15px;
   padding-left: 15px;
+  padding-top: 9px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   background-color: ${color.fbBg};
+  &:focus {
+    outline: none;
+  }
 `;
 
 const CommentWrap = styled.div`
@@ -53,11 +60,14 @@ export default ({ id, comments }) => {
       setComments([...initComments, newComment]);
     }
   });
+  const AutoSize = useCallback(e => {
+    e.target.style.height = e.target.scrollHeight + "px";
+  });
   return (
     <Comments>
       <CommentsUp>
         <Avatar3 avatarUrl={avatarUrl} />
-        <UpInput onKeyUp={e => CommentsWrite(e)} />
+        <UpInput onKeyUp={e => CommentsWrite(e)} onKeyDown={e => AutoSize(e)} />
       </CommentsUp>
       <CommentWrap>
         {initComments.map((comment, key) => {

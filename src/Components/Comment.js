@@ -19,7 +19,7 @@ const InfoAuthor = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 30px;
+  height: auto;
   border: 1px solid ${color.fbBg};
   border-radius: 15px;
   padding: 0px 10px 0px 10px;
@@ -46,17 +46,21 @@ const ReactLike = styled.div`
 const ReactShow = styled.div`
   margin-left: 8px;
 `;
+const Descr = styled.div`
+  max-width: 390px;
+  height: auto;
+  line-height: normal;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+`;
 export default ({ comment }) => {
-  console.log(comment);
-
   const {
     author: { nickname, avatarUrl },
     description,
     like,
     _id
   } = comment;
-  console.log(_id);
-
   const [initLike, setLike] = useState(like);
   const likeJs = useCallback(async e => {
     e.preventDefault();
@@ -71,7 +75,7 @@ export default ({ comment }) => {
         <Avatar3 avatarUrl={avatarUrl} />
         <InfoAuthor>
           <AuthorName>{nickname}</AuthorName>
-          <div>{description}</div>
+          <Descr>{description}</Descr>
         </InfoAuthor>
       </CommentInfo>
       <CommentReact>

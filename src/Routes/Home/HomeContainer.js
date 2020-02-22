@@ -24,8 +24,6 @@ export default class extends React.Component {
 
   render() {
     const { user, contents } = this.state;
-    console.log(user);
-
     return (
       <Home initUser={user} initContents={contents}>
         <HomePresenter />

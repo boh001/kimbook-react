@@ -47,13 +47,13 @@ export const apiLike = async (req, res) => {
         $inc: { like: -1 },
         $pull: { likeUsers: _id }
       });
-      res.json({ body: 0 });
+      res.json({ color: "", body: 0 });
     } else {
       await content.updateOne({
         $inc: { like: 1 },
         $push: { likeUsers: _id }
       });
-      res.json({ body: 1 });
+      res.json({ color: "#1877f2", body: 1 });
     }
   } catch (error) {
     console.log(error);
@@ -101,8 +101,6 @@ export const apiComment = async (req, res) => {
         model: "User"
       }
     ]);
-    console.log(newComment);
-
     res.json({ newComment });
   } catch (error) {
     console.log(error);

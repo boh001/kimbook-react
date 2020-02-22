@@ -106,6 +106,7 @@ const ActionIcon = styled.div`
   justify-content: center;
   align-items: center;
   border: none;
+  color: ${props => props.initColor};
   &:hover {
     background-color: ${color.fbBg};
   }
@@ -127,13 +128,16 @@ export default ({
   const { nickname, avatarUrl } = useUser();
   const [initLike, setLike] = useState(like);
   const [initView, setView] = useState(view);
+  const [initColor, setColor] = useState("");
   const [initComments, setComments] = useState(comments);
 
   const likeJs = useCallback(async e => {
     e.preventDefault();
+
     const {
-      data: { body }
+      data: { body, color }
     } = await upLike(id);
+    setColor(color);
     return setLike(body);
   });
   const showComment = useCallback(e => {
@@ -176,7 +180,7 @@ export default ({
         </>
         <ContentAction>
           <Action>
-            <ActionIcon onClick={e => likeJs(e)}>
+            <ActionIcon onClick={e => likeJs(e)} initColor={initColor}>
               <FontAwesomeIcon icon={faThumbsUp} size="lg" />
               <LikeBtn>좋아요</LikeBtn>
             </ActionIcon>
