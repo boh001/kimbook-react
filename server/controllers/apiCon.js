@@ -108,31 +108,30 @@ export const apiComment = async (req, res) => {
 };
 export const apiReComment = async (req, res) => {
   const {
-    body: { id, text }
+    body: { id, reComment }
   } = req;
   const {
     user: { _id }
   } = req;
   try {
-    const newReComment = await Comment.create({
+    const createReComment = await Comment.create({
       author: _id,
-      description: text
+      description: reComment
     });
     await Comment.findOneAndUpdate(
       { _id: id },
-      { $push: { comments: newReComment._id } }
+      { $push: { comments: createReComment._id } }
     );
-    const author = await User.findOne({ _id });
-    const comment = await Comment.findOne({ _id: id });
-    const reply = comment.comments.length;
+    const newReComment = await Comment.findOne({
+      _id: createReComment._id
+    }).populate([
+      {
+        path: "author",
+        model: "User"
+      }
+    ]);
 
-    res.status(200);
-    res.send({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: { avatar: author.avatarUrl, reply }
-    });
+    res.json({ newReComment });
   } catch (error) {
     console.log(error);
   }

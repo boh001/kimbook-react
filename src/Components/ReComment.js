@@ -2,17 +2,18 @@ import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { color } from "Components/variable";
-import { Avatar3 } from "./Avatar";
-import { upCommentLike } from "./api";
-import ReComments from "./ReComments";
-const Comment = styled.div`
+import { Avatar4 } from "./Avatar";
+import { upReCommentLike } from "./api";
+
+const ReComment = styled.div`
   margin-top: 10px;
+  margin-left: 35px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 `;
-const CommentInfo = styled.div`
+const ReCommentInfo = styled.div`
   display: flex;
   margin-bottom: 3px;
 `;
@@ -20,19 +21,20 @@ const InfoAuthor = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 35px;
+  height: 30px;
   border: 1px solid ${color.fbBg};
   border-radius: 15px;
   padding: 0px 10px 0px 10px;
   background-color: ${color.fbBg};
-  font-size: 16px;
+  font-size: 13px;
   margin-left: 10px;
 `;
 const AuthorName = styled.div`
   color: ${color.fbBlue};
+  font-size: 13px;
   margin-right: 5px;
 `;
-const CommentReact = styled.div`
+const ReCommentReact = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: flex-start;
@@ -54,42 +56,40 @@ const Descr = styled.div`
   overflow-wrap: break-word;
   word-wrap: break-word;
 `;
-export default ({ comment }) => {
+export default ({ reComment }) => {
+  console.log(reComment);
+
   const {
     author: { nickname, avatarUrl },
-    comments,
     description,
     like,
     _id
-  } = comment;
+  } = reComment;
   const [initLike, setLike] = useState(like);
   const likeJs = useCallback(async e => {
     e.preventDefault();
     const {
       data: { body }
-    } = await upCommentLike(_id);
+    } = await upReCommentLike(_id);
     return setLike(body);
   });
-  console.log(comments);
-
   return (
-    <Comment>
-      <CommentInfo>
-        <Avatar3 avatarUrl={avatarUrl} />
+    <ReComment>
+      <ReCommentInfo>
+        <Avatar4 avatarUrl={avatarUrl} />
         <InfoAuthor>
           <AuthorName>{nickname}</AuthorName>
           <Descr>{description}</Descr>
         </InfoAuthor>
-      </CommentInfo>
-      <CommentReact>
+      </ReCommentInfo>
+      <ReCommentReact>
         <ReactLike onClick={e => likeJs(e)}>좋아요</ReactLike>
         <div>
           <span>{initLike}</span>
           <span>개</span>
         </div>
         <ReactShow>댓글보기</ReactShow>
-      </CommentReact>
-      <ReComments id={_id} Recomments={comments} />
-    </Comment>
+      </ReCommentReact>
+    </ReComment>
   );
 };

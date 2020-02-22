@@ -17,6 +17,12 @@ export const upCommentLike = id => {
   };
   return api.post(`api/${id}/commentLike`, data);
 };
+export const upReCommentLike = id => {
+  const data = {
+    id
+  };
+  return api.post(`api/${id}/reCommentLike`, data);
+};
 export const apiContents = () => api.post("api/contents");
 export const apiComment = (id, comment) => {
   const data = {
@@ -24,4 +30,11 @@ export const apiComment = (id, comment) => {
     comment
   };
   return api.post(`api/${id}/comment`, data);
+};
+export const apiReComment = (id, reComment) => {
+  const data = {
+    id,
+    reComment
+  };
+  return api.post(`api/${id}/reComment`, data);
 };

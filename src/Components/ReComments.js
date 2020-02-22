@@ -2,35 +2,37 @@ import React, { useContext, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { color } from "Components/variable";
-import { Avatar3 } from "./Avatar";
+import { Avatar4 } from "./Avatar";
+import { apiReComment } from "./api";
 import { useUser } from "store";
-import { apiComment } from "./api";
-import Comment from "./Comment";
-const Comments = styled.div`
-  display: none;
+import ReComment from "./ReComment";
+const ReComments = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  width: 95%;
 `;
-const CommentsUp = styled.div`
+const ReCommentsUp = styled.div`
   width: 100%;
   display: flex;
+  margin-left: 70px;
   justify-content: flex-start;
   align-items: center;
 `;
 const UpInput = styled.textarea.attrs({
-  name: "comment",
+  name: "reComment",
   placeholder: "댓글을 입력하세요..."
 })`
   word-wrap: break-word;
   width: 90%;
-  height: 35px;
+  height: 30px;
   overflow: hidden;
   margin-left: 10px;
   border: none;
   border-radius: 15px;
   padding-left: 15px;
-  padding-top: 10px;
+  padding-top: 9px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -40,40 +42,45 @@ const UpInput = styled.textarea.attrs({
   }
 `;
 
-const CommentWrap = styled.div`
+const ReCommentWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
 `;
-export default ({ id, comments }) => {
+export default ({ id, Recomments }) => {
   const { avatarUrl } = useUser();
-  const [initComments, setComments] = useState(comments);
-  const CommentsWrite = useCallback(async e => {
+  const [initReComments, setReComments] = useState(Recomments);
+  const reCommentsWrite = useCallback(async e => {
     if (e.keyCode === 13) {
       e.preventDefault();
       const text = e.target.value;
       e.target.value = "";
       const {
-        data: { newComment }
-      } = await apiComment(id, text);
-      setComments([...initComments, newComment]);
+        data: { newReComment }
+      } = await apiReComment(id, text);
+      setReComments([...initReComments, newReComment]);
     }
   });
   const autoSize = useCallback(e => {
     e.target.style.height = e.target.scrollHeight + "px";
   });
+  console.log(initReComments);
+
   return (
-    <Comments>
-      <CommentsUp>
-        <Avatar3 avatarUrl={avatarUrl} />
-        <UpInput onKeyUp={e => CommentsWrite(e)} onKeyDown={e => autoSize(e)} />
-      </CommentsUp>
-      <CommentWrap>
-        {initComments.map((comment, key) => {
-          return <Comment key={key} comment={comment} />;
+    <ReComments>
+      <ReCommentsUp>
+        <Avatar4 avatarUrl={avatarUrl} />
+        <UpInput
+          onKeyUp={e => reCommentsWrite(e)}
+          onKeyDown={e => autoSize(e)}
+        />
+      </ReCommentsUp>
+      <ReCommentWrap>
+        {initReComments.map((reComment, key) => {
+          return <ReComment key={key} reComment={reComment} />;
         })}
-      </CommentWrap>
-    </Comments>
+      </ReCommentWrap>
+    </ReComments>
   );
 };
