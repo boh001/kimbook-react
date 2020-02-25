@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -94,8 +94,11 @@ const UsersJoin = styled.div`
   flex: none;
 `;
 const UsersLogin = styled.div``;
-export default () => {
-  const { login, avatarUrl, nickname } = useUser();
+export default withRouter(({ location }) => {
+  const { login, avatarUrl, nickname, id } = JSON.parse(
+    localStorage.getItem("user")
+  );
+
   return (
     <Header>
       <HeaderSearch>
@@ -118,10 +121,16 @@ export default () => {
           <>
             <UsersJoin>
               <Avatar3 avatarUrl={avatarUrl} />
-              <HLink to="/join">{nickname}</HLink>
+              <HLink to={`/profile/${id}`}>{nickname}</HLink>
             </UsersJoin>
             <UsersLogin>
-              <HLink to="/" onClick={() => logout()}>
+              <HLink
+                to="/"
+                onClick={() => {
+                  logout();
+                  return window.location.reload();
+                }}
+              >
                 로그아웃
               </HLink>
             </UsersLogin>
@@ -139,4 +148,4 @@ export default () => {
       </HeaderUsers>
     </Header>
   );
-};
+});

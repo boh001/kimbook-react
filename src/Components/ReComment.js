@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { color } from "Components/variable";
 import { Avatar4 } from "./Avatar";
-import { upReCommentLike } from "./api";
+import { upCommentLike } from "./api";
 
 const ReComment = styled.div`
   margin-top: 10px;
@@ -57,8 +57,6 @@ const Descr = styled.div`
   word-wrap: break-word;
 `;
 export default ({ reComment }) => {
-  console.log(reComment);
-
   const {
     author: { nickname, avatarUrl },
     description,
@@ -70,7 +68,7 @@ export default ({ reComment }) => {
     e.preventDefault();
     const {
       data: { body }
-    } = await upReCommentLike(_id);
+    } = await upCommentLike(_id);
     return setLike(body);
   });
   return (
@@ -88,7 +86,7 @@ export default ({ reComment }) => {
           <span>{initLike}</span>
           <span>개</span>
         </div>
-        <ReactShow>댓글보기</ReactShow>
+        <ReactShow>댓글달기</ReactShow>
       </ReCommentReact>
     </ReComment>
   );

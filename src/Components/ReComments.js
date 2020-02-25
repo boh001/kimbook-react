@@ -7,7 +7,7 @@ import { apiReComment } from "./api";
 import { useUser } from "store";
 import ReComment from "./ReComment";
 const ReComments = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   padding: 10px;
@@ -32,7 +32,7 @@ const UpInput = styled.textarea.attrs({
   border: none;
   border-radius: 15px;
   padding-left: 15px;
-  padding-top: 9px;
+  padding-top: 8px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -65,8 +65,6 @@ export default ({ id, Recomments }) => {
   const autoSize = useCallback(e => {
     e.target.style.height = e.target.scrollHeight + "px";
   });
-  console.log(initReComments);
-
   return (
     <ReComments>
       <ReCommentsUp>

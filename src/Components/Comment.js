@@ -70,8 +70,11 @@ export default ({ comment }) => {
     } = await upCommentLike(_id);
     return setLike(body);
   });
-  console.log(comments);
-
+  const showComment = useCallback(e => {
+    e.preventDefault();
+    const comment = e.currentTarget.parentNode.nextSibling;
+    comment.style.display = "flex";
+  });
   return (
     <Comment>
       <CommentInfo>
@@ -87,7 +90,7 @@ export default ({ comment }) => {
           <span>{initLike}</span>
           <span>개</span>
         </div>
-        <ReactShow>댓글보기</ReactShow>
+        <ReactShow onClick={e => showComment(e)}>댓글보기</ReactShow>
       </CommentReact>
       <ReComments id={_id} Recomments={comments} />
     </Comment>

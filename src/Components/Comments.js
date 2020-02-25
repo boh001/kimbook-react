@@ -46,7 +46,7 @@ const CommentWrap = styled.div`
   justify-content: flex-start;
   width: 100%;
 `;
-export default ({ id, comments }) => {
+export default ({ id, comments, setLength }) => {
   const { avatarUrl } = useUser();
   const [initComments, setComments] = useState(comments);
   const CommentsWrite = useCallback(async e => {
@@ -58,11 +58,14 @@ export default ({ id, comments }) => {
         data: { newComment }
       } = await apiComment(id, text);
       setComments([...initComments, newComment]);
+
+      setLength(++initComments.length);
     }
   });
   const autoSize = useCallback(e => {
     e.target.style.height = e.target.scrollHeight + "px";
   });
+
   return (
     <Comments>
       <CommentsUp>

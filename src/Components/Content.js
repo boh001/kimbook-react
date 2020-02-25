@@ -9,6 +9,7 @@ import { Avatar3 } from "./Avatar";
 import Comments from "./Comments";
 import { upLike } from "./api";
 import { useUser } from "store";
+import { useContent } from "../store";
 
 const ContentWrap = styled.div.attrs(props => {
   return {
@@ -129,8 +130,7 @@ export default ({
   const [initLike, setLike] = useState(like);
   const [initView, setView] = useState(view);
   const [initColor, setColor] = useState("");
-  const [initComments, setComments] = useState(comments);
-
+  const [length, setLength] = useState(comments.length);
   const likeJs = useCallback(async e => {
     e.preventDefault();
 
@@ -141,9 +141,9 @@ export default ({
     return setLike(body);
   });
   const showComment = useCallback(e => {
+    e.preventDefault();
     const comment = e.currentTarget.parentNode.parentNode.nextSibling;
     comment.style.display = "flex";
-    return false;
   });
 
   return (
@@ -172,7 +172,7 @@ export default ({
             </ReactLike>
             <ReactInfo>
               <InfoReply>댓글</InfoReply>
-              <InfoReply>{comments.length}</InfoReply>
+              <InfoReply>{length}</InfoReply>
               <InfoReply>조회수</InfoReply>
               <InfoReply>{initView}</InfoReply>
             </ReactInfo>
@@ -193,7 +193,7 @@ export default ({
             </ActionIcon>
           </Action>
         </ContentAction>
-        <Comments id={id} comments={comments} />
+        <Comments id={id} comments={comments} setLength={setLength} />
       </>
     </ContentWrap>
   );

@@ -89,7 +89,7 @@ export const checkAuth = async (req, res, next) => {
 };
 export const logout = (req, res) => {
   req.logout();
-  res.redirect(routes.home);
+  res.json({ login: false });
 };
 export const profile = (req, res) => {
   res.render("profile");

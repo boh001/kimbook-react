@@ -3,6 +3,7 @@ import axios from "axios";
 const api = axios.create({
   baseURL: "http://localhost:3000/"
 });
+export const loginChecker = () => api.post();
 
 export const logout = () => api.post("logout");
 export const upLike = id => {
@@ -17,12 +18,7 @@ export const upCommentLike = id => {
   };
   return api.post(`api/${id}/commentLike`, data);
 };
-export const upReCommentLike = id => {
-  const data = {
-    id
-  };
-  return api.post(`api/${id}/reCommentLike`, data);
-};
+
 export const apiContents = () => api.post("api/contents");
 export const apiComment = (id, comment) => {
   const data = {

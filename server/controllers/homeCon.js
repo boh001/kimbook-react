@@ -9,7 +9,7 @@ export const checkHome = async (req, res) => {
     res.json({ user: { login: false } });
   } else {
     const {
-      user: { nickname, avatarUrl }
+      user: { id, nickname, avatarUrl }
     } = req;
     try {
       const contents = await Content.find({}).populate([
@@ -36,7 +36,7 @@ export const checkHome = async (req, res) => {
           model: "User"
         }
       ]);
-      res.json({ user: { nickname, avatarUrl, login: true }, contents });
+      res.json({ user: { id, nickname, avatarUrl, login: true }, contents });
     } catch (error) {
       console.log(error);
     }

@@ -1,6 +1,6 @@
 import React from "react";
 import Content from "./Content";
-import { useContents, useUser } from "../store";
+import { useContents, useUser } from "store";
 
 export default () => {
   const contents = useContents();

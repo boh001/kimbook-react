@@ -1,7 +1,8 @@
 import React from "react";
 import HomePresenter from "./HomePresenter";
 import { Home } from "store";
-import { loginChecker } from "./api";
+import { loginChecker, logout } from "Components/api";
+
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +11,6 @@ export default class extends React.Component {
       contents: []
     };
   }
-
   async componentDidMount() {
     try {
       const {
@@ -24,6 +24,8 @@ export default class extends React.Component {
 
   render() {
     const { user, contents } = this.state;
+    localStorage.setItem("user", JSON.stringify(this.state.user));
+
     return (
       <Home initUser={user} initContents={contents}>
         <HomePresenter />
