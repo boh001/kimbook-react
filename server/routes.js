@@ -16,6 +16,7 @@ const PLUSFRIEND = "/:id/plusFriend";
 const COMMENT = "/:id/comment";
 const RECOMMENT = "/:id/reComment";
 const COMMENTLIKE = "/:id/commentLike";
+const MYCONTENT = "/myContent";
 
 //USER
 const USER = "/user";
@@ -31,6 +32,7 @@ const routes = {
   login: LOGIN,
   logout: LOGOUT,
   api: API,
+  myContent: MYCONTENT,
   contents: CONTENTS,
   like: LIKE,
   view: VIEW,

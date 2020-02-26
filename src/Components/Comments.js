@@ -47,7 +47,7 @@ const CommentWrap = styled.div`
   width: 100%;
 `;
 export default ({ id, comments, setLength }) => {
-  const { avatarUrl } = useUser();
+  const { avatarUrl } = JSON.parse(localStorage.getItem("user"));
   const [initComments, setComments] = useState(comments);
   const CommentsWrite = useCallback(async e => {
     if (e.keyCode === 13) {

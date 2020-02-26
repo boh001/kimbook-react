@@ -186,3 +186,33 @@ export const apiPlusFriend = async (req, res) => {
     console.log(error);
   }
 };
+export const apiMyContent = async (req, res) => {
+  const {
+    user: { _id }
+  } = req;
+  const myContents = await Content.find({ authorId: _id }).populate([
+    {
+      path: "comments",
+      model: "Comment",
+      populate: [
+        {
+          path: "author",
+          model: "User"
+        },
+        {
+          path: "comments",
+          model: "Comment",
+          populate: {
+            path: "author",
+            model: "User"
+          }
+        }
+      ]
+    },
+    {
+      path: "authorId",
+      model: "User"
+    }
+  ]);
+  res.json({ myContents });
+};

@@ -94,7 +94,7 @@ const UsersJoin = styled.div`
   flex: none;
 `;
 const UsersLogin = styled.div``;
-export default withRouter(({ location }) => {
+export default () => {
   const { login, avatarUrl, nickname, id } = JSON.parse(
     localStorage.getItem("user")
   );
@@ -148,4 +148,4 @@ export default withRouter(({ location }) => {
       </HeaderUsers>
     </Header>
   );
-});
+};

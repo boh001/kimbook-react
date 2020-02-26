@@ -1,10 +1,10 @@
 import React from "react";
 import Content from "./Content";
-import { useContents, useUser } from "store";
+import { useContents } from "store";
 
 export default () => {
   const contents = useContents();
-  const { avatarUrl } = useUser();
+  const { avatarUrl } = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       {contents.map((content, key) => {

@@ -49,7 +49,7 @@ const ReCommentWrap = styled.div`
   width: 100%;
 `;
 export default ({ id, Recomments }) => {
-  const { avatarUrl } = useUser();
+  const { avatarUrl } = JSON.parse(localStorage.getItem("user"));
   const [initReComments, setReComments] = useState(Recomments);
   const reCommentsWrite = useCallback(async e => {
     if (e.keyCode === 13) {

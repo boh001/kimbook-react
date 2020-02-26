@@ -6,11 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faCommentDots } from "@fortawesome/free-regular-svg-icons";
 import { color } from "./variable";
 import { Avatar3 } from "./Avatar";
-import Comments from "./Comments";
 import { upLike } from "./api";
-import { useUser } from "store";
-import { useContent } from "../store";
-
+import Comments from "./Comments";
 const ContentWrap = styled.div.attrs(props => {
   return {
     id: props.ID
@@ -19,7 +16,7 @@ const ContentWrap = styled.div.attrs(props => {
   display: grid;
   grid-auto-rows: auto;
   width: 100%;
-  margin: 15px 15px;
+  margin-bottom: 30px;
   border-radius: ${color.frRa};
   border: 1px solid ${color.fbLine};
   background-color: ${color.fbWhite};
@@ -124,9 +121,10 @@ export default ({
   contentType,
   text,
   fileUrl,
-  createdAt
+  createdAt,
+  nickname,
+  avatarUrl
 }) => {
-  const { nickname, avatarUrl } = useUser();
   const [initLike, setLike] = useState(like);
   const [initView, setView] = useState(view);
   const [initColor, setColor] = useState("");

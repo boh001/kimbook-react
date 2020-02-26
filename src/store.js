@@ -8,10 +8,10 @@ export const Home = ({ initUser, initContents, children }) => {
     </HomeContext.Provider>
   );
 };
-export const useUser = () => {
-  const { initUser } = useContext(HomeContext);
-  return initUser;
-};
+// export const useUser = () => {
+//   const { initUser } = useContext(HomeContext);
+//   return initUser;
+// };
 export const useContents = () => {
   const { initContents } = useContext(HomeContext);
   return initContents;

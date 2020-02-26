@@ -68,16 +68,37 @@ const FormText = styled.div`
   border-bottom: 1px solid ${color.fbLine};
 `;
 const TextAvatar = styled(Link)``;
+// const TextInput = styled.input.attrs(props => ({
+//   name: "text",
+//   type: "text",
+//   placeholder: `${props.nickname}님, 무슨 생각을 하고 계신가요?`
+// }))`
+//   border: none;
+//   padding-left: 20px;
+//   padding-top: 20px;
+//   width: 98.6%;
+//   height: 60px;
+//   font-size: 15px;
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: center;
+//   &:focus {
+//     outline: none;
+//   }
+// `;
 const TextInput = styled.textarea.attrs(props => ({
-  name: "text",
+  name: "comment",
   placeholder: `${props.nickname}님, 무슨 생각을 하고 계신가요?`
 }))`
+  word-wrap: break-word;
+  width: 90%;
+  height: 35px;
+  overflow: hidden;
+  margin-left: 10px;
   border: none;
-  padding-left: 20px;
-  padding-top: 20px;
-  width: 98.6%;
-  height: 60px;
-  font-size: 15px;
+  border-radius: 15px;
+  padding-left: 15px;
+  padding-top: 10px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -116,6 +137,7 @@ const StaticInput = styled.input.attrs({
     background-color: greenyellow;
   }
 `;
+
 const FormStatic = styled.div`
   display: flex;
   position: relative;
@@ -126,7 +148,7 @@ const FormStatic = styled.div`
   width: 100%;
 `;
 export default () => {
-  const { nickname, avatarUrl } = useUser();
+  const { avatarUrl, nickname } = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       <ContentFilter>

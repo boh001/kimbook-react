@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Headers from "Components/Header";
 import { color } from "Components/variable";
 import { Link } from "react-router-dom";
+import Content from "Components/Content";
 
 const ProfileFrame = styled.div`
   width: 100%;
@@ -96,34 +97,107 @@ const ListsUL = styled(Link)`
     transition: all ease 1s;
   }
 `;
-export default () => (
-  <>
-    <Headers />
-    <ProfileFrame>
-      <ProfileCover>
-        <ProfileHeader>
-          <HeaderBg />
-          <HeaderAvatar />
-        </ProfileHeader>
-        <HeaderLists>
-          <div></div>
-          <ListsUL>타임라인</ListsUL>
-          <ListsUL>정보</ListsUL>
-          <ListsUL>친구</ListsUL>
-          <ListsUL>사진</ListsUL>
-          <ListsUL>
-            더보기
-            <HiddenList>
-              <div>책</div>
-              <div>좋아요</div>
-              <div>이벤트</div>
-              <div>음악</div>
-              <div>영화</div>
-            </HiddenList>
-          </ListsUL>
-          <div></div>
-        </HeaderLists>
-      </ProfileCover>
-    </ProfileFrame>
-  </>
-);
+const HeaderMain = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+  width: 100%;
+  height: 100%;
+`;
+const MyStorage = styled.div`
+  position: sticky;
+  position: -webkit-sticky;
+  top: -1px;
+  display: grid;
+  grid-template-rows: 500px 500px;
+  grid-gap: 15px;
+  width: 385px;
+  padding-right: 15px;
+`;
+const StorageContent = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  border: 1px solid ${color.fbLine};
+`;
+const StorageFriend = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: green;
+  border: 1px solid ${color.fbLine};
+`;
+const MyContent = styled.div`
+  width: 55%;
+`;
+export default ({ myContents }) => {
+  console.log(myContents);
+
+  const { avatarUrl } = JSON.parse(localStorage.getItem("user"));
+  return (
+    <>
+      <Headers />
+      <ProfileFrame>
+        <ProfileCover>
+          <ProfileHeader>
+            <HeaderBg />
+            <HeaderAvatar />
+          </ProfileHeader>
+          <HeaderLists>
+            <div></div>
+            <ListsUL to="/">타임라인</ListsUL>
+            <ListsUL to="#">정보</ListsUL>
+            <ListsUL to="#">친구</ListsUL>
+            <ListsUL to="#">사진</ListsUL>
+            <ListsUL to="#">
+              더보기
+              <HiddenList>
+                <div>책</div>
+                <div>좋아요</div>
+                <div>이벤트</div>
+                <div>음악</div>
+                <div>영화</div>
+              </HiddenList>
+            </ListsUL>
+            <div></div>
+          </HeaderLists>
+          <HeaderMain>
+            <MyStorage>
+              <StorageContent></StorageContent>
+              <StorageFriend></StorageFriend>
+            </MyStorage>
+            <MyContent>
+              {myContents.map((content, key) => {
+                const {
+                  _id,
+                  contentType,
+                  comments,
+                  like,
+                  view,
+                  text,
+                  fileUrl,
+                  createdAt,
+                  authorId: { nickname }
+                } = content;
+                return (
+                  <Content
+                    key={key}
+                    id={_id}
+                    contentType={contentType}
+                    comments={comments}
+                    like={like}
+                    view={view}
+                    text={text}
+                    fileUrl={fileUrl}
+                    createdAt={createdAt}
+                    nickname={nickname}
+                    avatarUrl={avatarUrl}
+                  />
+                );
+              })}
+            </MyContent>
+          </HeaderMain>
+        </ProfileCover>
+      </ProfileFrame>
+    </>
+  );
+};
