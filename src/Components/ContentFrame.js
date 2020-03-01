@@ -86,8 +86,9 @@ const TextAvatar = styled(Link)``;
 //     outline: none;
 //   }
 // `;
-const TextInput = styled.textarea.attrs(props => ({
-  name: "comment",
+const TextInput = styled.input.attrs(props => ({
+  type: "text",
+  name: "text",
   placeholder: `${props.nickname}님, 무슨 생각을 하고 계신가요?`
 }))`
   word-wrap: break-word;

@@ -159,67 +159,52 @@ const HomeJoin = styled(Link)`
 `;
 
 const HomePresenter = () => {
-  const { login } = JSON.parse(localStorage.getItem("user"));
   return (
-    <>
-      {login ? (
-        <>
-          <Header />
-          <MainFrame>
-            <>
-              <ContentFrame />
-              <FriendChat />
-            </>
-          </MainFrame>
-        </>
-      ) : (
-        <MainHome>
-          <>
-            <GlobalStyles />
-            <HomeTheme>
-              <ThemeMain>Kimbook(Facebook Clone)</ThemeMain>
-              <ThemeUl>
-                <UlSpan>Programming Language</UlSpan>
-                <UlLi>Backend : NodeJS(Express)</UlLi>
-                <UlLi>FrontEnd : ReactJS</UlLi>
-              </ThemeUl>
-              <ThemeUl>
-                <UlSpan>Function</UlSpan>
-                <UlLi>Upload Contents</UlLi>
-                <UlLi>Like Button</UlLi>
-                <UlLi>Find Friends</UlLi>
-                <UlLi>Comment</UlLi>
-                <UlLi>Realtime Chat(socket.io)</UlLi>
-              </ThemeUl>
-              <ThemeUl>
-                <UlSpan>Hosting</UlSpan>
-                <UlLi>Server : Heroku</UlLi>
-                <UlLi>DB : MongoAtlas</UlLi>
-                <UlLi>Storage : AWS-s3</UlLi>
-              </ThemeUl>
-            </HomeTheme>
-            <HomeLogin>
-              <Wrap>
-                <Label>아이디</Label>
-                <LoginId></LoginId>
-              </Wrap>
-              <Wrap>
-                <Label>비밀번호</Label>
-                <LoginPwd></LoginPwd>
-              </Wrap>
-              <LoginSubmit></LoginSubmit>
-              <FindPwd to="/find">계정을 잊으셨나요?</FindPwd>
-              <Line>
-                <HrLine />
-                <HrText>또는</HrText>
-                <HrLine />
-              </Line>
-              <HomeJoin to="/join">새 계정 만들기</HomeJoin>
-            </HomeLogin>
-          </>
-        </MainHome>
-      )}
-    </>
+    <MainHome>
+      <>
+        <GlobalStyles />
+        <HomeTheme>
+          <ThemeMain>Kimbook(Facebook Clone)</ThemeMain>
+          <ThemeUl>
+            <UlSpan>Programming Language</UlSpan>
+            <UlLi>Backend : NodeJS(Express)</UlLi>
+            <UlLi>FrontEnd : ReactJS</UlLi>
+          </ThemeUl>
+          <ThemeUl>
+            <UlSpan>Function</UlSpan>
+            <UlLi>Upload Contents</UlLi>
+            <UlLi>Like Button</UlLi>
+            <UlLi>Find Friends</UlLi>
+            <UlLi>Comment</UlLi>
+            <UlLi>Realtime Chat(socket.io)</UlLi>
+          </ThemeUl>
+          <ThemeUl>
+            <UlSpan>Hosting</UlSpan>
+            <UlLi>Server : Heroku</UlLi>
+            <UlLi>DB : MongoAtlas</UlLi>
+            <UlLi>Storage : AWS-s3</UlLi>
+          </ThemeUl>
+        </HomeTheme>
+        <HomeLogin>
+          <Wrap>
+            <Label>아이디</Label>
+            <LoginId></LoginId>
+          </Wrap>
+          <Wrap>
+            <Label>비밀번호</Label>
+            <LoginPwd></LoginPwd>
+          </Wrap>
+          <LoginSubmit></LoginSubmit>
+          <FindPwd to="/find">계정을 잊으셨나요?</FindPwd>
+          <Line>
+            <HrLine />
+            <HrText>또는</HrText>
+            <HrLine />
+          </Line>
+          <HomeJoin to="/join">새 계정 만들기</HomeJoin>
+        </HomeLogin>
+      </>
+    </MainHome>
   );
 };
 

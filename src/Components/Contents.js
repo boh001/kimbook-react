@@ -4,7 +4,6 @@ import { useContents } from "store";
 
 export default () => {
   const contents = useContents();
-  const { avatarUrl } = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       {contents.map((content, key) => {
@@ -17,7 +16,7 @@ export default () => {
           text,
           fileUrl,
           createdAt,
-          authorId: { nickname }
+          authorId: { nickname, avatarUrl }
         } = content;
         return (
           <Content

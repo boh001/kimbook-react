@@ -129,14 +129,14 @@ export default ({
   const [initView, setView] = useState(view);
   const [initColor, setColor] = useState("");
   const [length, setLength] = useState(comments.length);
+
   const likeJs = useCallback(async e => {
     e.preventDefault();
-
     const {
       data: { body, color }
     } = await upLike(id);
     setColor(color);
-    return setLike(body);
+    return setLike(initLike + body);
   });
   const showComment = useCallback(e => {
     e.preventDefault();
@@ -155,27 +155,43 @@ export default ({
           <h1>{moment(createdAt).format("LL")}</h1>
         </ContentInfo>
         <ContentText>{text}</ContentText>
-        <>
-          {contentType.split("/")[0] === "video" ? (
+
+        {contentType.split("/")[0] === "video" ? (
+          <>
             <ContentVideo src={fileUrl} type={contentType} />
-          ) : (
+            <ContentReact>
+              <ReactLike>
+                <LikeIcon>
+                  <FontAwesomeIcon icon={faThumbsUp} size="lg" />
+                </LikeIcon>
+                <LikeCount>{initLike}</LikeCount>
+              </ReactLike>
+              <ReactInfo>
+                <InfoReply>댓글</InfoReply>
+                <InfoReply>{length}</InfoReply>
+                <InfoReply>조회수</InfoReply>
+                <InfoReply>{initView}</InfoReply>
+              </ReactInfo>
+            </ContentReact>
+          </>
+        ) : (
+          <>
             <ContentImage src={fileUrl} />
-          )}
-          <ContentReact>
-            <ReactLike>
-              <LikeIcon>
-                <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-              </LikeIcon>
-              <LikeCount>{initLike}</LikeCount>
-            </ReactLike>
-            <ReactInfo>
-              <InfoReply>댓글</InfoReply>
-              <InfoReply>{length}</InfoReply>
-              <InfoReply>조회수</InfoReply>
-              <InfoReply>{initView}</InfoReply>
-            </ReactInfo>
-          </ContentReact>
-        </>
+            <ContentReact>
+              <ReactLike>
+                <LikeIcon>
+                  <FontAwesomeIcon icon={faThumbsUp} size="lg" />
+                </LikeIcon>
+                <LikeCount>{initLike}</LikeCount>
+              </ReactLike>
+              <ReactInfo>
+                <InfoReply>댓글</InfoReply>
+                <InfoReply>{length}</InfoReply>
+              </ReactInfo>
+            </ContentReact>
+          </>
+        )}
+
         <ContentAction>
           <Action>
             <ActionIcon onClick={e => likeJs(e)} initColor={initColor}>

@@ -1,5 +1,6 @@
 //HOME
 const HOME = "/";
+const ME = "/me";
 const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
@@ -25,6 +26,7 @@ const EDITPROFILE = "/:id/editProfile";
 
 const routes = {
   home: HOME,
+  me: ME,
   make: MAKE,
   search: SEARCH,
   user: USER,

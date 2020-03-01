@@ -105,9 +105,6 @@ const HeaderMain = styled.div`
   height: 100%;
 `;
 const MyStorage = styled.div`
-  position: sticky;
-  position: -webkit-sticky;
-  top: -1px;
   display: grid;
   grid-template-rows: 500px 500px;
   grid-gap: 15px;
@@ -130,8 +127,6 @@ const MyContent = styled.div`
   width: 55%;
 `;
 export default ({ myContents }) => {
-  console.log(myContents);
-
   const { avatarUrl } = JSON.parse(localStorage.getItem("user"));
   return (
     <>

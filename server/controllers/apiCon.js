@@ -47,7 +47,7 @@ export const apiLike = async (req, res) => {
         $inc: { like: -1 },
         $pull: { likeUsers: _id }
       });
-      res.json({ color: "", body: 0 });
+      res.json({ color: "", body: -1 });
     } else {
       await content.updateOne({
         $inc: { like: 1 },
@@ -153,7 +153,7 @@ export const apiCommentLike = async (req, res) => {
         $pull: { likeUsers: _id }
       });
       res.status(200);
-      res.json({ body: 0 });
+      res.json({ body: -1 });
     } else {
       await comment.updateOne({
         $inc: { like: 1 },

@@ -64,3 +64,12 @@ export const makeContent = async (req, res) => {
     console.log(error);
   }
 };
+
+export const getSearch = async (req, res) => {
+  const {
+    body: { search }
+  } = req;
+
+  const users = await User.find({ nickname: search });
+  res.json({ users });
+};

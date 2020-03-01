@@ -37,3 +37,9 @@ export const apiReComment = (id, reComment) => {
 export const apiMyContent = () => {
   return api.post(`api/myContent`);
 };
+export const apiSearch = search => {
+  const data = {
+    search
+  };
+  return api.post(`search`, data);
+};

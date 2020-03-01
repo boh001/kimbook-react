@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKickstarter } from "@fortawesome/free-brands-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { color } from "./variable";
-import { useUser } from "store";
 import { Avatar3 } from "./Avatar";
 import { logout } from "./api";
 
@@ -21,9 +20,6 @@ const Header = styled.header`
   align-items: center;
   color: white;
   z-index: 99;
-  a:visited {
-    color: white;
-  }
 `;
 const HeaderSearch = styled.div`
   margin-right: 90px;
@@ -86,6 +82,10 @@ const HLink = styled(Link)`
   font-weight: bold;
   margin-left: 5px;
   flex: none;
+  color: white;
+  &:visited {
+    color: white;
+  }
 `;
 const UsersJoin = styled.div`
   display: flex;
@@ -103,7 +103,7 @@ export default () => {
     <Header>
       <HeaderSearch>
         <SearchHome>
-          <HLink to="/">
+          <HLink to={login ? "/me" : "/"}>
             <FontAwesomeIcon icon={faKickstarter} size="lg" />
           </HLink>
         </SearchHome>
@@ -128,7 +128,6 @@ export default () => {
                 to="/"
                 onClick={() => {
                   logout();
-                  return window.location.reload();
                 }}
               >
                 로그아웃

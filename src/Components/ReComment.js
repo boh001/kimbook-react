@@ -69,7 +69,8 @@ export default ({ reComment }) => {
     const {
       data: { body }
     } = await upCommentLike(_id);
-    return setLike(body);
+
+    return setLike(initLike + body);
   });
   return (
     <ReComment>

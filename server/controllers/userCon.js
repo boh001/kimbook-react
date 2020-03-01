@@ -74,7 +74,7 @@ export const postAuth = async (req, res) => {
 };
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
-  successRedirect: routes.home
+  successRedirect: routes.me
 });
 export const checkAuth = async (req, res, next) => {
   const {

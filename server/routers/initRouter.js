@@ -9,7 +9,7 @@ import {
   postAuth
 } from "../controllers/userCon";
 import { contentUpload } from "../middleware";
-import { checkHome, makeContent } from "../controllers/homeCon";
+import { checkHome, makeContent, getSearch } from "../controllers/homeCon";
 
 const initRouter = express.Router();
 
@@ -19,4 +19,5 @@ initRouter.post(routes.join, contentUpload, postJoin, verifyEmail);
 initRouter.post(routes.login, checkAuth, postLogin);
 initRouter.post(routes.logout, logout);
 initRouter.post(routes.auth, postAuth);
+initRouter.post(routes.search, getSearch);
 export default initRouter;

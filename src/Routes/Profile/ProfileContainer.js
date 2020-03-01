@@ -22,8 +22,6 @@ export default class extends React.Component {
   }
   render() {
     const { myContents } = this.state;
-    console.log(myContents);
-
     return (
       <>
         <ProfilePresenter myContents={myContents} />

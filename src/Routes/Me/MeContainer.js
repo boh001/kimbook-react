@@ -1,9 +1,9 @@
+import MePresenter from "./MePresenter";
 import React from "react";
-import HomePresenter from "./HomePresenter";
-import { Home } from "store";
 import { loginChecker } from "Components/api";
+import { Home } from "store";
 
-export default class extends React.Component {
+class MeContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,15 +21,14 @@ export default class extends React.Component {
       console.log(error);
     }
   }
-
   render() {
     const { user, contents } = this.state;
     localStorage.setItem("user", JSON.stringify(this.state.user));
-
     return (
       <Home initUser={user} initContents={contents}>
-        <HomePresenter />
+        <MePresenter />;
       </Home>
     );
   }
 }
+export default MeContainer;
