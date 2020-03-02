@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { color } from "Components/variable";
 import { Avatar1 } from "./Avatar";
-import React from "react";
+import React, { useCallback, useState } from "react";
+import { apiUpFrinend } from "./api";
 
 const ResultPeople = styled.div`
   display: flex;
@@ -13,6 +14,28 @@ const ResultPeople = styled.div`
   padding: 10px;
   background-color: ${color.fbWhite};
   border-radius: ${color.frRa};
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  &:hover {
+    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 6px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 6px rgba(0, 0, 0, 0.23);
+    -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 6px rgba(0, 0, 0, 0.23);
+    -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
 `;
 const PeopleInfo = styled.div`
   margin-left: 15px;
@@ -51,8 +74,12 @@ const InfoFriend = styled.div`
 `;
 
 export default ({ user }) => {
-  const { avatarUrl, name, nickname, email } = user;
-  const upFriend = 1;
+  const { _id, avatarUrl, name, nickname, email, friends } = user;
+  const [initfriends, setFriends] = useState(friends);
+  const upFriend = useCallback(async e => {
+    e.preventDefault();
+    return await apiUpFrinend(_id);
+  });
   return (
     <ResultPeople>
       <Avatar1 avatarUrl={avatarUrl} />
@@ -71,8 +98,8 @@ export default ({ user }) => {
         </div>
         <InfoFriend>
           <h1>함께 아는 친구</h1>
-          <h1>0</h1>
-          <h1>명</h1>
+          <h1> 0</h1>
+          <h1> 명</h1>
         </InfoFriend>
       </PeopleInfo>
     </ResultPeople>

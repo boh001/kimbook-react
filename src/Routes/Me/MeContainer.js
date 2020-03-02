@@ -8,24 +8,25 @@ class MeContainer extends React.Component {
     super(props);
     this.state = {
       user: { login: false },
-      contents: []
+      contents: [],
+      friends: []
     };
   }
   async componentDidMount() {
     try {
       const {
-        data: { user, contents }
+        data: { user, contents, friends }
       } = await loginChecker();
-      this.setState({ user, contents });
+      this.setState({ user, contents, friends });
     } catch (error) {
       console.log(error);
     }
   }
   render() {
-    const { user, contents } = this.state;
-    localStorage.setItem("user", JSON.stringify(this.state.user));
+    const { user, contents, friends } = this.state;
+    localStorage.setItem("user", JSON.stringify(user));
     return (
-      <Home initUser={user} initContents={contents}>
+      <Home initUser={friends} initContents={contents}>
         <MePresenter />;
       </Home>
     );

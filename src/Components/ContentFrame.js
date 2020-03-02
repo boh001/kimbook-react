@@ -7,7 +7,6 @@ import { Avatar2 } from "./Avatar";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Contents from "./Contents";
-import { useUser } from "store";
 
 const ContentFilter = styled.div`
   display: flex;
@@ -68,24 +67,7 @@ const FormText = styled.div`
   border-bottom: 1px solid ${color.fbLine};
 `;
 const TextAvatar = styled(Link)``;
-// const TextInput = styled.input.attrs(props => ({
-//   name: "text",
-//   type: "text",
-//   placeholder: `${props.nickname}님, 무슨 생각을 하고 계신가요?`
-// }))`
-//   border: none;
-//   padding-left: 20px;
-//   padding-top: 20px;
-//   width: 98.6%;
-//   height: 60px;
-//   font-size: 15px;
-//   display: flex;
-//   justify-content: flex-start;
-//   align-items: center;
-//   &:focus {
-//     outline: none;
-//   }
-// `;
+
 const TextInput = styled.input.attrs(props => ({
   type: "text",
   name: "text",

@@ -12,6 +12,14 @@ export const checkHome = async (req, res) => {
       user: { id, nickname, avatarUrl }
     } = req;
     try {
+      const me = await User.findOne({ _id: id }).populate([
+        {
+          path: "friends",
+          model: "User"
+        }
+      ]);
+      const friends = me.friends;
+
       const contents = await Content.find({}).populate([
         {
           path: "comments",
@@ -36,7 +44,11 @@ export const checkHome = async (req, res) => {
           model: "User"
         }
       ]);
-      res.json({ user: { id, nickname, avatarUrl, login: true }, contents });
+      res.json({
+        user: { id, nickname, avatarUrl, login: true },
+        friends,
+        contents
+      });
     } catch (error) {
       console.log(error);
     }
@@ -69,7 +81,12 @@ export const getSearch = async (req, res) => {
   const {
     body: { search }
   } = req;
+  console.log(search);
 
-  const users = await User.find({ nickname: search });
+  const users = await User.find({
+    nickname: { $regex: `${search}`, $options: "i" }
+  });
+  console.log(users);
+
   res.json({ users });
 };

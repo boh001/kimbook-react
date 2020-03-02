@@ -43,3 +43,9 @@ export const apiSearch = search => {
   };
   return api.post(`search`, data);
 };
+export const apiUpFrinend = id => {
+  const data = {
+    id
+  };
+  return api.post(`api/${id}/plusFriend`, data);
+};
