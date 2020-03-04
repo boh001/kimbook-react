@@ -5,7 +5,7 @@ import { Avatar3 } from "./Avatar";
 const Friend = styled.div`
   cursor: pointer;
   display: flex;
-  padding: 7px;
+  padding: 10px 10px 7px 10px;
   flex-direction: column;
   width: 100%;
   &:hover {

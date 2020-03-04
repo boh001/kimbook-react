@@ -56,7 +56,8 @@ const MakerName = styled.div`
   height: 20%;
   width: 100%;
   background-color: ${color.fbLightGrey};
-  border-bottom: 1px solid ${color.fbLine};
+  border: 1px solid ${color.fbLine};
+  border-right: none;
 `;
 const FormText = styled.div`
   display: flex;

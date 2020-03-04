@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { color } from "./variable";
 import { useUser } from "store";
 import Friend from "./Friend";
-import Media from "react-media";
 
 const FriendFrame = styled.div`
   display: flex;
@@ -16,20 +15,45 @@ const FriendList = styled.div`
   width: 250px;
   height: 100%;
   border-left: 1px solid ${color.fbLine};
-  right: 0%;
-  @media only screen and (max-width: 1024px) {
+
+  @media only screen and (max-width: 1100px) {
     bottom: 0px;
-    height: 50px;
+    height: 35px;
+    width: 210px;
+    right: 50px;
     border: 1px solid ${color.fbLine};
-    background-color: ${color.fbBg};
+    background-color: ${color.fbWhite};
+    border-radius: ${color.frRa};
+    border-bottom: none;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.24);
+    -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -ms-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    &:hover {
+      height: 300px;
+      transition: all ease 0.5s;
+    }
   }
 `;
 const ListHeader = styled.div`
-  padding: 7px;
+  display: none;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 10px 10px 10px;
   &:after {
-    content: ${props => {
-      return `${props.number}`;
-    }};
+    content: "(2)";
+  }
+  @media only screen and (max-width: 1100px) {
+    display: block;
+    border-bottom: 1px solid ${color.fbLine};
   }
 `;
 export default () => {

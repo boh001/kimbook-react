@@ -81,12 +81,10 @@ export const getSearch = async (req, res) => {
   const {
     body: { search }
   } = req;
-  console.log(search);
 
   const users = await User.find({
     nickname: { $regex: `${search}`, $options: "i" }
   });
-  console.log(users);
 
   res.json({ users });
 };
