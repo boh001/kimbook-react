@@ -49,6 +49,7 @@ const CommentWrap = styled.div`
 export default ({ id, comments, setLength }) => {
   const { avatarUrl } = JSON.parse(localStorage.getItem("user"));
   const [initComments, setComments] = useState(comments);
+  const [inith, seth] = useState(false);
   const CommentsWrite = useCallback(async e => {
     if (e.keyCode === 13) {
       e.preventDefault();
@@ -64,6 +65,9 @@ export default ({ id, comments, setLength }) => {
   });
   const autoSize = useCallback(e => {
     e.target.style.height = e.target.scrollHeight + "px";
+    if (e.target.style.height !== "35px") {
+      seth(true);
+    }
   });
 
   return (
@@ -74,7 +78,7 @@ export default ({ id, comments, setLength }) => {
       </CommentsUp>
       <CommentWrap>
         {initComments.map((comment, key) => {
-          return <Comment key={key} comment={comment} />;
+          return <Comment key={key} comment={comment} h={inith} />;
         })}
       </CommentWrap>
     </Comments>

@@ -19,14 +19,16 @@ const CommentInfo = styled.div`
 const InfoAuthor = styled.div`
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  height: 35px;
+  ${props => (props.h ? "align-items:flex-start;" : "align-items:center;")};
+  min-height: 35px;
   border: 1px solid ${color.fbBg};
   border-radius: 15px;
   padding: 0px 10px 0px 10px;
   background-color: ${color.fbBg};
   font-size: 16px;
+  padding: 10px;
   margin-left: 10px;
+  width: 90%;
 `;
 const AuthorName = styled.div`
   color: ${color.fbBlue};
@@ -53,8 +55,10 @@ const Descr = styled.div`
   overflow: hidden;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  height: auto;
 `;
-export default ({ comment }) => {
+export default ({ h, comment }) => {
+  let Rh = h;
   const {
     author: { nickname, avatarUrl },
     comments,
@@ -79,7 +83,7 @@ export default ({ comment }) => {
     <Comment>
       <CommentInfo>
         <Avatar3 avatarUrl={avatarUrl} />
-        <InfoAuthor>
+        <InfoAuthor h={Rh}>
           <AuthorName>{nickname}</AuthorName>
           <Descr>{description}</Descr>
         </InfoAuthor>

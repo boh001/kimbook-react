@@ -20,7 +20,7 @@ const InfoName = styled.div`
   margin-left: 5px;
 `;
 
-export default ({ avatarUrl, nickname }) => {
+export default ({ id, avatarUrl, nickname }) => {
   return (
     <Friend>
       <FriendInfo>

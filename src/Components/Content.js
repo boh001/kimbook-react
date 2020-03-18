@@ -15,11 +15,14 @@ const ContentWrap = styled.div.attrs(props => {
 })`
   display: grid;
   grid-auto-rows: auto;
-  width: 100%;
+  grid-auto-columns: 500px;
   margin-bottom: 30px;
   border-radius: ${color.frRa};
   border: 1px solid ${color.fbLine};
   background-color: ${color.fbWhite};
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 `;
 const ContentInfo = styled.div`
   display: flex;
@@ -146,69 +149,48 @@ export default ({
 
   return (
     <ContentWrap>
-      <>
-        <ContentInfo>
-          <InfoAuthor>
-            <Avatar3 avatarUrl={avatarUrl} />
-            <AuthorName>{nickname}</AuthorName>
-          </InfoAuthor>
-          <h1>{moment(createdAt).format("LL")}</h1>
-        </ContentInfo>
-        <ContentText>{text}</ContentText>
+      <ContentInfo>
+        <InfoAuthor>
+          <Avatar3 avatarUrl={avatarUrl} />
+          <AuthorName>{nickname}</AuthorName>
+        </InfoAuthor>
+        <h1>{moment(createdAt).format("LL")}</h1>
+      </ContentInfo>
+      <ContentText>{text}</ContentText>
+      {contentType.split("/")[0] === "video" ? (
+        <ContentVideo src={fileUrl} type={contentType} />
+      ) : (
+        <ContentImage src={fileUrl} />
+      )}
+      <ContentReact>
+        <ReactLike>
+          <LikeIcon>
+            <FontAwesomeIcon icon={faThumbsUp} size="lg" />
+          </LikeIcon>
+          <LikeCount>{initLike}</LikeCount>
+        </ReactLike>
+        <ReactInfo>
+          <InfoReply>댓글</InfoReply>
+          <InfoReply>{length}</InfoReply>
+        </ReactInfo>
+      </ContentReact>
 
-        {contentType.split("/")[0] === "video" ? (
-          <>
-            <ContentVideo src={fileUrl} type={contentType} />
-            <ContentReact>
-              <ReactLike>
-                <LikeIcon>
-                  <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-                </LikeIcon>
-                <LikeCount>{initLike}</LikeCount>
-              </ReactLike>
-              <ReactInfo>
-                <InfoReply>댓글</InfoReply>
-                <InfoReply>{length}</InfoReply>
-                <InfoReply>조회수</InfoReply>
-                <InfoReply>{initView}</InfoReply>
-              </ReactInfo>
-            </ContentReact>
-          </>
-        ) : (
-          <>
-            <ContentImage src={fileUrl} />
-            <ContentReact>
-              <ReactLike>
-                <LikeIcon>
-                  <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-                </LikeIcon>
-                <LikeCount>{initLike}</LikeCount>
-              </ReactLike>
-              <ReactInfo>
-                <InfoReply>댓글</InfoReply>
-                <InfoReply>{length}</InfoReply>
-              </ReactInfo>
-            </ContentReact>
-          </>
-        )}
-
-        <ContentAction>
-          <Action>
-            <ActionIcon onClick={e => likeJs(e)} initColor={initColor}>
-              <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-              <LikeBtn>좋아요</LikeBtn>
-            </ActionIcon>
-            <ActionIcon onClick={e => showComment(e)}>
-              <FontAwesomeIcon icon={faCommentDots} size="lg" />
-              <ReplyBtn>댓글</ReplyBtn>
-            </ActionIcon>
-            <ActionIcon>
-              <ShareBtn>공유하기</ShareBtn>
-            </ActionIcon>
-          </Action>
-        </ContentAction>
-        <Comments id={id} comments={comments} setLength={setLength} />
-      </>
+      <ContentAction>
+        <Action>
+          <ActionIcon onClick={e => likeJs(e)} initColor={initColor}>
+            <FontAwesomeIcon icon={faThumbsUp} size="lg" />
+            <LikeBtn>좋아요</LikeBtn>
+          </ActionIcon>
+          <ActionIcon onClick={e => showComment(e)}>
+            <FontAwesomeIcon icon={faCommentDots} size="lg" />
+            <ReplyBtn>댓글</ReplyBtn>
+          </ActionIcon>
+          <ActionIcon>
+            <ShareBtn>공유하기</ShareBtn>
+          </ActionIcon>
+        </Action>
+      </ContentAction>
+      <Comments id={id} comments={comments} setLength={setLength} />
     </ContentWrap>
   );
 };

@@ -43,7 +43,7 @@ export const apiSearch = search => {
   };
   return api.post(`search`, data);
 };
-export const apiUpFrinend = id => {
+export const apiUpFriend = id => {
   const data = {
     id
   };

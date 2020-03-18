@@ -4,6 +4,7 @@ import Headers from "Components/Header";
 import { color } from "Components/variable";
 import { Link } from "react-router-dom";
 import Content from "Components/Content";
+import MyContent from "Components/MyContent/MyContent";
 
 const ProfileFrame = styled.div`
   width: 100%;
@@ -58,7 +59,7 @@ const HeaderLists = styled.div`
   }
 `;
 
-const HiddenList = styled.div`
+const HiddenLists = styled.div`
   display: grid;
   padding: 10px 0px 10px 0px;
   grid-gap: 10px;
@@ -72,11 +73,12 @@ const HiddenList = styled.div`
   border: 1px solid ${color.fbLine};
   visibility: hidden;
   opacity: 0;
-  div {
-    width: 100%;
-    &:hover {
-      background-color: ${color.fbBg};
-    }
+  transition: all ease 0.5s;
+`;
+const HiddenList = styled.div`
+  width: 100%;
+  &:hover {
+    background-color: ${color.fbBg};
   }
 `;
 const ListsUL = styled(Link)`
@@ -91,10 +93,9 @@ const ListsUL = styled(Link)`
   &:hover {
     background-color: ${color.fbBg};
   }
-  &:hover ${HiddenList} {
+  &:hover ${HiddenLists} {
     visibility: visible;
     opacity: 1;
-    transition: all ease 1s;
   }
 `;
 const HeaderMain = styled.div`
@@ -105,29 +106,18 @@ const HeaderMain = styled.div`
   height: 100%;
 `;
 const MyStorage = styled.div`
-  display: grid;
-  grid-template-rows: 500px 500px;
-  grid-gap: 15px;
-  width: 385px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 900px;
   padding-right: 15px;
 `;
-const StorageContent = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: red;
-  border: 1px solid ${color.fbLine};
+
+const MyContents = styled.div`
+  width: 500px;
 `;
-const StorageFriend = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: green;
-  border: 1px solid ${color.fbLine};
-`;
-const MyContent = styled.div`
-  width: 55%;
-`;
-export default ({ myContents }) => {
-  const { avatarUrl } = JSON.parse(localStorage.getItem("user"));
+export default ({ myContents, myFriends }) => {
+  const { name, avatarUrl } = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       <Headers />
@@ -145,22 +135,34 @@ export default ({ myContents }) => {
             <ListsUL to="#">사진</ListsUL>
             <ListsUL to="#">
               더보기
-              <HiddenList>
-                <div>책</div>
-                <div>좋아요</div>
-                <div>이벤트</div>
-                <div>음악</div>
-                <div>영화</div>
-              </HiddenList>
+              <HiddenLists>
+                <HiddenList>책</HiddenList>
+                <HiddenList>좋아요</HiddenList>
+                <HiddenList>이벤트</HiddenList>
+                <HiddenList>음악</HiddenList>
+                <HiddenList>영화</HiddenList>
+              </HiddenLists>
             </ListsUL>
             <div></div>
           </HeaderLists>
           <HeaderMain>
             <MyStorage>
-              <StorageContent></StorageContent>
-              <StorageFriend></StorageFriend>
+              <MyContent
+                color={"#4cd137"}
+                icon={"Image"}
+                theme={"사진"}
+                fnc={"사진 추가"}
+                myContents={myContents}
+              />
+              <MyContent
+                color={"#ff4757"}
+                icon={"friends"}
+                theme={"친구"}
+                fnc={"친구 추가"}
+                myContents={myFriends}
+              />
             </MyStorage>
-            <MyContent>
+            <MyContents>
               {myContents.map((content, key) => {
                 const {
                   _id,
@@ -189,7 +191,7 @@ export default ({ myContents }) => {
                   />
                 );
               })}
-            </MyContent>
+            </MyContents>
           </HeaderMain>
         </ProfileCover>
       </ProfileFrame>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { color } from "Components/variable";
 import { Avatar1 } from "./Avatar";
 import React, { useCallback, useState } from "react";
-import { apiUpFrinend } from "./api";
+import { apiUpFriend } from "./api";
 
 const ResultPeople = styled.div`
   display: flex;
@@ -78,7 +78,7 @@ export default ({ user }) => {
   const [initfriends, setFriends] = useState(friends);
   const upFriend = useCallback(async e => {
     e.preventDefault();
-    return await apiUpFrinend(_id);
+    return await apiUpFriend(_id);
   });
   return (
     <ResultPeople>

@@ -8,16 +8,19 @@ export const GlobalStyles = createGlobalStyle`
 
     }
     *{
-        box-sizing:border-box;
+        -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
     }
     html{
         background-color: ${color.fbBg};
         width:100%;
         height:100%;
+    
     }
     body{
         width:100%;
         height:100%;
-        box-sizing:border-box;
+   
     }
 `;
