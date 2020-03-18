@@ -37,19 +37,18 @@ export default ({ color, icon, theme, fnc, myContents }) => {
             const { fileUrl } = f;
             return (
               <Wrap key={key}>
-                <Img url={fileUrl} />
+                <Img url={fileUrl} h={"100%"} />
               </Wrap>
             );
           } else {
             const { avatarUrl, name } = f;
             return (
               <Wrap key={key}>
-                <Img url={avatarUrl} />
+                <Img url={avatarUrl} h={"80%"} />
                 <Name>{name}</Name>
               </Wrap>
             );
           }
-          console.log(f);
         })}
       </StorageBody>
     </Storage>

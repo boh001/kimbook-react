@@ -1,17 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
-import { color } from "./variable";
-import { useUser } from "store";
-import Friend from "./Friend";
+import { color } from "../variable";
 
-const FriendFrame = styled.div`
+export const FriendFrame = styled.div`
   position: relative;
   display: flex;
   justify-content: flex-end;
   width: 100%;
 `;
-const FriendList = styled.div`
+export const FriendList = styled.div`
   position: fixed;
   width: 250px;
   height: 100%;
@@ -44,7 +40,7 @@ const FriendList = styled.div`
     }
   }
 `;
-const ListHeader = styled.div`
+export const ListHeader = styled.div`
   display: none;
   font-size: 15px;
   font-weight: bold;
@@ -57,27 +53,3 @@ const ListHeader = styled.div`
     border-bottom: 1px solid ${color.fbLine};
   }
 `;
-export default () => {
-  const friends = useUser();
-
-  return (
-    <>
-      <FriendFrame>
-        <FriendList>
-          <ListHeader number={friends.length}>채팅</ListHeader>
-          {friends.map((friend, key) => {
-            const { id, avatarUrl, nickname } = friend;
-            return (
-              <Friend
-                key={key}
-                id={id}
-                avatarUrl={avatarUrl}
-                nickname={nickname}
-              />
-            );
-          })}
-        </FriendList>
-      </FriendFrame>
-    </>
-  );
-};

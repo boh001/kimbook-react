@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { color } from "Components/variable";
-import { Avatar1 } from "./Avatar";
+import { Avatar1 } from "Components/Avatar";
 import React, { useCallback, useState } from "react";
-import { apiUpFriend } from "./api";
+import { apiUpFriend } from "api";
 
 const ResultPeople = styled.div`
   display: flex;

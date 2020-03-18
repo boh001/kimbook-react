@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Headers from "Components/Header";
+import Headers from "Components/Header/Header";
 import { color } from "Components/variable";
 import { Link } from "react-router-dom";
-import Content from "Components/Content";
+import Content from "Components/ContentFrame/Contents/Content/Content";
 import MyContent from "Components/MyContent/MyContent";
 
 const ProfileFrame = styled.div`

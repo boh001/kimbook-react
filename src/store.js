@@ -1,19 +1,19 @@
 import React, { useContext } from "react";
 
-const HomeContext = React.createContext();
-export const Home = ({ initUser, initContents, children }) => {
+const MainContext = React.createContext();
+export const Main = ({ initUser, initContents, children }) => {
   return (
-    <HomeContext.Provider value={{ initUser, initContents }}>
+    <MainContext.Provider value={{ initUser, initContents }}>
       {children}
-    </HomeContext.Provider>
+    </MainContext.Provider>
   );
 };
 export const useUser = () => {
-  const { initUser } = useContext(HomeContext);
+  const { initUser } = useContext(MainContext);
   return initUser;
 };
 export const useContents = () => {
-  const { initContents } = useContext(HomeContext);
+  const { initContents } = useContext(MainContext);
   return initContents;
 };
 

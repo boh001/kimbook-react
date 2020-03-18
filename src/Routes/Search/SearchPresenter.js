@@ -1,8 +1,8 @@
 import React from "react";
 import SearchResult from "Components/SearchResult";
 import styled from "styled-components";
-import Header from "Components/Header";
-import FriendChat from "Components/FriendChat";
+import Header from "Components/Header/Header";
+import FriendChat from "Components/FriendChat/FriendChat";
 
 const SearchResults = styled.div`
   margin: 40px 10px 0px 10px;

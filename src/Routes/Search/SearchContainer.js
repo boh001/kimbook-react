@@ -1,7 +1,7 @@
 import SearchPresenter from "./SearchPresenter";
 import React from "react";
 import queryString from "query-string";
-import { apiSearch } from "Components/api";
+import { apiSearch } from "api";
 export default class extends React.Component {
   constructor(props) {
     super(props);

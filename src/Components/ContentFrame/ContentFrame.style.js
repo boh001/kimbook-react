@@ -1,32 +1,26 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
-import { color } from "./variable";
+import { color } from "../variable";
 import { Link } from "react-router-dom";
-import { Avatar2 } from "./Avatar";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Contents from "./Contents";
 
-const ContentFilter = styled.div`
+export const ContentFilter = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
 `;
-const FilterList = styled.div`
+export const FilterList = styled.div`
   position: fixed;
   width: 250px;
-  height: 100vh;
+  min-height: 100vh;
   border-right: 1px solid ${color.fbLine};
 `;
-const ContentFrame = styled.div`
+export const ContentFrame = styled.div`
   display: flex;
   flex: none;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   width: 500px;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0px 15px 0px 15px;
 `;
 export const MakerForm = styled.form.attrs({
@@ -38,7 +32,7 @@ export const MakerForm = styled.form.attrs({
   height: 160px;
   margin: 15px 15px;
 `;
-const ContentMaker = styled.div`
+export const ContentMaker = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid ${color.fbLine};
@@ -47,7 +41,7 @@ const ContentMaker = styled.div`
   background-color: ${color.fbWhite};
   border-radius: ${color.frRa};
 `;
-const MakerName = styled.div`
+export const MakerName = styled.div`
   display: flex;
   align-items: center;
   padding-left: 10px;
@@ -59,7 +53,7 @@ const MakerName = styled.div`
   border: 1px solid ${color.fbLine};
   border-right: none;
 `;
-const FormText = styled.div`
+export const FormText = styled.div`
   display: flex;
   align-items: center;
   margin: 0px 15px 0px 15px;
@@ -67,9 +61,9 @@ const FormText = styled.div`
   width: 94.5%;
   border-bottom: 1px solid ${color.fbLine};
 `;
-const TextAvatar = styled(Link)``;
+export const TextAvatar = styled(Link)``;
 
-const TextInput = styled.input.attrs(props => ({
+export const TextInput = styled.input.attrs(props => ({
   type: "text",
   name: "text",
   placeholder: `${props.nickname}님, 무슨 생각을 하고 계신가요?`
@@ -91,7 +85,7 @@ const TextInput = styled.input.attrs(props => ({
   }
 `;
 
-const StaticLabel = styled.label`
+export const StaticLabel = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,7 +100,7 @@ const StaticLabel = styled.label`
   background-color: ${color.fbLightGrey};
   border-radius: ${color.frSra};
 `;
-const StaticInput = styled.input.attrs({
+export const StaticInput = styled.input.attrs({
   type: "file",
   name: "content"
 })`
@@ -122,7 +116,7 @@ const StaticInput = styled.input.attrs({
   }
 `;
 
-const FormStatic = styled.div`
+export const FormStatic = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
@@ -131,34 +125,3 @@ const FormStatic = styled.div`
   padding: 3px;
   width: 100%;
 `;
-export default () => {
-  const { avatarUrl, nickname } = JSON.parse(localStorage.getItem("user"));
-  return (
-    <>
-      <ContentFilter>
-        <FilterList>hi</FilterList>
-      </ContentFilter>
-      <ContentFrame>
-        <MakerForm>
-          <ContentMaker>
-            <MakerName>게시물 만들기</MakerName>
-            <FormText>
-              <TextAvatar to="/login">
-                <Avatar2 avatarUrl={avatarUrl} />
-              </TextAvatar>
-              <TextInput nickname={nickname} />
-            </FormText>
-            <FormStatic>
-              <StaticLabel>
-                <FontAwesomeIcon icon={faImage} size="lg" />
-                &nbsp; 사진 / 동영상
-              </StaticLabel>
-              <StaticInput />
-            </FormStatic>
-          </ContentMaker>
-        </MakerForm>
-        <Contents avatarUrl={avatarUrl} />
-      </ContentFrame>
-    </>
-  );
-};

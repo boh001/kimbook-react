@@ -4,11 +4,7 @@ import styled from "styled-components";
 import { color } from "Components/variable";
 import { Link } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import Header from "Components/Header";
-import ContentFrame from "Components/ContentFrame";
-import FriendChat from "Components/FriendChat";
-import MainFrame from "Components/Frame";
-import { useUser } from "store";
+
 const GlobalStyles = createGlobalStyle`
   html{
     background-color:${color.fbWhite};
@@ -157,8 +153,7 @@ const HomeJoin = styled(Link)`
   text-decoration: none;
   font-size: 15px;
 `;
-
-const HomePresenter = () => {
+export default () => {
   return (
     <MainHome>
       <>
@@ -207,5 +202,3 @@ const HomePresenter = () => {
     </MainHome>
   );
 };
-
-export default HomePresenter;

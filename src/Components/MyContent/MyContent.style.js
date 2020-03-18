@@ -9,13 +9,13 @@ export const Img = styled.img.attrs(props => ({
   src: props.url
 }))`
   width: 100%;
-  height: 100%;
+  height: ${props => props.h};
 `;
 export const Name = styled.div`
   font-size: 13px;
 
   width: 100%;
-  height: 100%;
+  height: 20%;
 `;
 
 export const Storage = styled.div`

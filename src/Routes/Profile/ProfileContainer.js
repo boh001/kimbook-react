@@ -1,6 +1,6 @@
 import React from "react";
 import ProfilePresenter from "./ProfilePresenter";
-import { apiMyContent } from "Components/api";
+import { apiMyContent } from "api";
 
 export default class extends React.Component {
   constructor(props) {

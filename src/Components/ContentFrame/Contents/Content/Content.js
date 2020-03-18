@@ -4,10 +4,10 @@ import styled from "styled-components";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faCommentDots } from "@fortawesome/free-regular-svg-icons";
-import { color } from "./variable";
-import { Avatar3 } from "./Avatar";
-import { upLike } from "./api";
-import Comments from "./Comments";
+import { color } from "../../../variable";
+import { Avatar3 } from "Components/Avatar";
+import { upLike } from "api";
+import Comments from "./Comments/Comments";
 const ContentWrap = styled.div.attrs(props => {
   return {
     id: props.ID
@@ -20,9 +20,6 @@ const ContentWrap = styled.div.attrs(props => {
   border-radius: ${color.frRa};
   border: 1px solid ${color.fbLine};
   background-color: ${color.fbWhite};
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
 `;
 const ContentInfo = styled.div`
   display: flex;
@@ -118,7 +115,6 @@ const ShareBtn = styled.div``;
 
 export default ({
   like,
-  view,
   comments,
   id,
   contentType,
@@ -129,7 +125,6 @@ export default ({
   avatarUrl
 }) => {
   const [initLike, setLike] = useState(like);
-  const [initView, setView] = useState(view);
   const [initColor, setColor] = useState("");
   const [length, setLength] = useState(comments.length);
 
