@@ -17,6 +17,7 @@ export default ({ h, comment }) => {
   let Rh = h;
   const {
     author: { nickname, avatarUrl },
+    author,
     comments,
     description,
     like,
@@ -40,7 +41,7 @@ export default ({ h, comment }) => {
       <CommentInfo>
         <Avatar3 avatarUrl={avatarUrl} />
         <InfoAuthor h={Rh}>
-          <AuthorName>{nickname}</AuthorName>
+          <AuthorName to={`/profile/${author._id}`}>{nickname}</AuthorName>
           <Descr>{description}</Descr>
         </InfoAuthor>
       </CommentInfo>

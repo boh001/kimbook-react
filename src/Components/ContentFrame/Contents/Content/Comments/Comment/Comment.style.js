@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { color } from "Components/variable";
+import { Link } from "react-router-dom";
 
 export const Comment = styled.div`
   margin-top: 10px;
@@ -10,6 +11,7 @@ export const Comment = styled.div`
 `;
 export const CommentInfo = styled.div`
   display: flex;
+  align-items: center;
   margin-bottom: 3px;
 `;
 export const InfoAuthor = styled.div`
@@ -26,9 +28,12 @@ export const InfoAuthor = styled.div`
   margin-left: 10px;
   width: 90%;
 `;
-export const AuthorName = styled.div`
+export const AuthorName = styled(Link)`
   color: ${color.fbBlue};
   margin-right: 5px;
+  &:visited {
+    color: ${color.fbBlue};
+  }
 `;
 export const CommentReact = styled.div`
   cursor: pointer;

@@ -75,7 +75,6 @@ const InfoFriend = styled.div`
 
 export default ({ user }) => {
   const { _id, avatarUrl, name, nickname, email, friends } = user;
-  const [initfriends, setFriends] = useState(friends);
   const upFriend = useCallback(async e => {
     e.preventDefault();
     return await apiUpFriend(_id);

@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 export const ContentFilter = styled.div`
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  min-height: 100vh;
 `;
 export const FilterList = styled.div`
   position: fixed;
-  width: 250px;
-  min-height: 100vh;
+  height: 100%;
   border-right: 1px solid ${color.fbLine};
 `;
 export const ContentFrame = styled.div`

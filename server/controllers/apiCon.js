@@ -188,9 +188,9 @@ export const apiPlusFriend = async (req, res) => {
 };
 export const apiMyContent = async (req, res) => {
   const {
-    user: { _id }
+    body: { id }
   } = req;
-  const myContents = await Content.find({ authorId: _id }).populate([
+  const myContents = await Content.find({ authorId: id }).populate([
     {
       path: "comments",
       model: "Comment",
@@ -214,8 +214,9 @@ export const apiMyContent = async (req, res) => {
       model: "User"
     }
   ]);
-  const myFriends = await User.findOne({ _id }).populate([
+  const myFriends = await User.findOne({ _id: id }).populate([
     { path: "friends", model: "User" }
   ]);
+
   res.json({ myContents, myFriends });
 };

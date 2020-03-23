@@ -9,22 +9,20 @@ export default () => {
 
   return (
     <>
-      <FriendFrame>
-        <FriendList>
-          <ListHeader number={friends.length}>채팅</ListHeader>
-          {friends.map((friend, key) => {
-            const { id, avatarUrl, nickname } = friend;
-            return (
-              <Friend
-                key={key}
-                id={id}
-                avatarUrl={avatarUrl}
-                nickname={nickname}
-              />
-            );
-          })}
-        </FriendList>
-      </FriendFrame>
+      <FriendList>
+        <ListHeader number={friends.length}>채팅</ListHeader>
+        {friends.map((friend, key) => {
+          const { id, avatarUrl, nickname } = friend;
+          return (
+            <Friend
+              key={key}
+              id={id}
+              avatarUrl={avatarUrl}
+              nickname={nickname}
+            />
+          );
+        })}
+      </FriendList>
     </>
   );
 };

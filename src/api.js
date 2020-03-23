@@ -34,8 +34,11 @@ export const apiReComment = (id, reComment) => {
   };
   return api.post(`api/${id}/reComment`, data);
 };
-export const apiMyContent = () => {
-  return api.post(`api/myContent`);
+export const apiMyContent = id => {
+  const data = {
+    id
+  };
+  return api.post(`api/myContent`, data);
 };
 export const apiSearch = search => {
   const data = {

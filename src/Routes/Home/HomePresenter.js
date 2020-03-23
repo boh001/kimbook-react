@@ -147,11 +147,11 @@ const HomeJoin = styled(Link)`
   margin-top: 20px;
   width: 130px;
   height: 44px;
-  color: white;
   border-radius: ${color.frRa};
   background-color: ${color.fbGreen};
   text-decoration: none;
   font-size: 15px;
+  color: white;
 `;
 export default () => {
   return (

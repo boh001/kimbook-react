@@ -16,8 +16,9 @@ export default () => {
           text,
           fileUrl,
           createdAt,
-          authorId: { nickname, avatarUrl }
+          authorId
         } = content;
+
         return (
           <Content
             key={key}
@@ -29,8 +30,9 @@ export default () => {
             text={text}
             fileUrl={fileUrl}
             createdAt={createdAt}
-            nickname={nickname}
-            avatarUrl={avatarUrl}
+            nickname={authorId.nickname}
+            avatarUrl={authorId.avatarUrl}
+            authorId={authorId._id}
           />
         );
       })}

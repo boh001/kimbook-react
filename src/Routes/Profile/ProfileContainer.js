@@ -1,6 +1,7 @@
 import React from "react";
 import ProfilePresenter from "./ProfilePresenter";
 import { apiMyContent } from "api";
+import queryString from "query-string";
 
 export default class extends React.Component {
   constructor(props) {
@@ -12,10 +13,17 @@ export default class extends React.Component {
   }
 
   async componentDidMount() {
+    const {
+      match: {
+        params: { id }
+      }
+    } = this.props;
+    console.log(id);
+
     try {
       const {
         data: { myContents, myFriends }
-      } = await apiMyContent();
+      } = await apiMyContent(id);
       this.setState({ myContents, myFriends: myFriends.friends });
     } catch (error) {
       console.log(error);

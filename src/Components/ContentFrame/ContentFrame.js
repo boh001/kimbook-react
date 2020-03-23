@@ -23,9 +23,9 @@ export default () => {
   const { avatarUrl, nickname } = JSON.parse(localStorage.getItem("user"));
   return (
     <>
-      <ContentFilter>
+      {/* <ContentFilter>
         <FilterList>hi</FilterList>
-      </ContentFilter>
+      </ContentFilter> */}
       <ContentFrame>
         <MakerForm>
           <ContentMaker>

@@ -4,7 +4,7 @@ import Headers from "Components/Header/Header";
 import { color } from "Components/variable";
 import { Link } from "react-router-dom";
 import Content from "Components/ContentFrame/Contents/Content/Content";
-import MyContent from "Components/MyContent/MyContent";
+import MyStorage from "Components/MyStorage/MyStorage";
 
 const ProfileFrame = styled.div`
   width: 100%;
@@ -31,10 +31,9 @@ const HeaderBg = styled.img.attrs({
   object-fit: cover;
   object-position: 50% 15%;
 `;
-const HeaderAvatar = styled.img.attrs({
-  src:
-    "https://kimbookreact.s3.ap-northeast-2.amazonaws.com/kim/image/1581935426485"
-})`
+const HeaderAvatar = styled.img.attrs(props => ({
+  src: props.url
+}))`
   position: absolute;
   padding: 5px;
   top: 100px;
@@ -43,6 +42,15 @@ const HeaderAvatar = styled.img.attrs({
   height: 170px;
   border-radius: 50%;
   background-color: white;
+`;
+const HeaderName = styled.div`
+  font-size: 30px;
+  font-weight: bold;
+  bottom: 20px;
+  left: 200px;
+
+  color: white;
+  position: absolute;
 `;
 const HeaderLists = styled.div`
   display: grid;
@@ -105,7 +113,7 @@ const HeaderMain = styled.div`
   width: 100%;
   height: 100%;
 `;
-const MyStorage = styled.div`
+const MyStorages = styled.div`
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -117,15 +125,16 @@ const MyContents = styled.div`
   width: 500px;
 `;
 export default ({ myContents, myFriends }) => {
-  const { name, avatarUrl } = JSON.parse(localStorage.getItem("user"));
+  const { nickname, avatarUrl } = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       <Headers />
       <ProfileFrame>
         <ProfileCover>
           <ProfileHeader>
-            <HeaderBg />
-            <HeaderAvatar />
+            <HeaderBg url={avatarUrl} />
+            <HeaderAvatar url={avatarUrl} />
+            <HeaderName>{nickname}</HeaderName>
           </ProfileHeader>
           <HeaderLists>
             <div></div>
@@ -146,22 +155,22 @@ export default ({ myContents, myFriends }) => {
             <div></div>
           </HeaderLists>
           <HeaderMain>
-            <MyStorage>
-              <MyContent
+            <MyStorages>
+              <MyStorage
                 color={"#4cd137"}
                 icon={"Image"}
                 theme={"사진"}
                 fnc={"사진 추가"}
                 myContents={myContents}
               />
-              <MyContent
+              <MyStorage
                 color={"#ff4757"}
                 icon={"friends"}
                 theme={"친구"}
                 fnc={"친구 추가"}
                 myContents={myFriends}
               />
-            </MyStorage>
+            </MyStorages>
             <MyContents>
               {myContents.map((content, key) => {
                 const {

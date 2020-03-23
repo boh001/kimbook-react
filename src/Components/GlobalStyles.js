@@ -5,12 +5,17 @@ export const GlobalStyles = createGlobalStyle`
     ${reset};
     a{
         text-decoration:none;
+        
 
     }
     *{
         -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+    }
+
+    input{
+        autocomplete: "off"
     }
     html{
         background-color: ${color.fbBg};

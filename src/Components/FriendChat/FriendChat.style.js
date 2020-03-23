@@ -1,19 +1,20 @@
 import styled from "styled-components";
 import { color } from "../variable";
 
-export const FriendFrame = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-`;
 export const FriendList = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   position: fixed;
   width: 250px;
   height: 100%;
+  overflow: auto;
   border-left: 1px solid ${color.fbLine};
-
-  @media only screen and (max-width: 1100px) {
+  @media screen and (min-width: 1025px) {
+    right: 0;
+    top: 40px;
+  }
+  @media only screen and (max-width: 1024px) {
     bottom: 0px;
     height: 35px;
     width: 210px;
@@ -35,7 +36,7 @@ export const FriendList = styled.div`
     -o-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
     &:hover {
-      height: 300px;
+      height: 200px;
       transition: all ease 0.5s;
     }
   }

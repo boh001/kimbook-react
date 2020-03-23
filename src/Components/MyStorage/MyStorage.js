@@ -10,7 +10,7 @@ import {
   ImgWrap,
   HeaderTheme,
   StorageFnc
-} from "./MyContent.style";
+} from "./MyStorage.style";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

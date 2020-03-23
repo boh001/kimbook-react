@@ -28,7 +28,7 @@ export default () => {
     <Header>
       <HeaderSearch>
         <SearchHome>
-          <HLink to={login ? "/me" : "/"}>
+          <HLink to="/me">
             <FontAwesomeIcon icon={faKickstarter} size="lg" />
           </HLink>
         </SearchHome>
