@@ -15,7 +15,7 @@ import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default ({ color, icon, theme, fnc, myContents }) => {
+export default ({ color, icon, theme, fnc, myContents, linked }) => {
   return (
     <Storage>
       <StorageHeader>
@@ -29,7 +29,7 @@ export default ({ color, icon, theme, fnc, myContents }) => {
           </ImgWrap>
           <HeaderTheme>{theme}</HeaderTheme>
         </HeaderWrap>
-        <StorageFnc>{fnc}</StorageFnc>
+        <StorageFnc to={linked}>{fnc}</StorageFnc>
       </StorageHeader>
       <StorageBody>
         {myContents.map((f, key) => {

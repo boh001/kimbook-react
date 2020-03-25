@@ -1,5 +1,5 @@
 import React from "react";
-import SearchResult from "Components/SearchResult";
+import SearchResult from "Components/SearchResult/SearchResult";
 import styled from "styled-components";
 import Header from "Components/Header/Header";
 import FriendChat from "Components/FriendChat/FriendChat";
@@ -11,13 +11,13 @@ const SearchResults = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export default ({ users }) => {
+export default ({ users, myFriends }) => {
   return (
     <>
       <Header />
       <SearchResults>
         {users.map((user, key) => {
-          return <SearchResult key={key} user={user} />;
+          return <SearchResult key={key} user={user} myFriends={myFriends} />;
         })}
       </SearchResults>
       <FriendChat />

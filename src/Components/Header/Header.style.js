@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color } from "../variable";
+import { color } from "Components/Global/variable";
 import { Link } from "react-router-dom";
 
 export const Header = styled.header`

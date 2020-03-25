@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color } from "Components/variable";
+import { color } from "Components/Global/variable";
 
 export const ReComments = styled.div`
   display: none;

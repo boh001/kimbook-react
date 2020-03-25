@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { color } from "Components/variable";
+import { color } from "Components/Global/variable";
 import Header from "Components/Header/Header";
 const HomeFrame2 = styled.div`
   margin: 0px 10px 0px 10px;

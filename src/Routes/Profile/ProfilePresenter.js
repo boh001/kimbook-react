@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Headers from "Components/Header/Header";
-import { color } from "Components/variable";
+import { color } from "Components/Global/variable";
 import { Link } from "react-router-dom";
 import Content from "Components/ContentFrame/Contents/Content/Content";
 import MyStorage from "Components/MyStorage/MyStorage";
@@ -126,6 +126,9 @@ const MyContents = styled.div`
 `;
 export default ({ myContents, myFriends }) => {
   const { nickname, avatarUrl } = JSON.parse(localStorage.getItem("user"));
+  const ImgContents = myContents.filter(
+    c => c.contentType.split("/")[0] === "image"
+  );
   return (
     <>
       <Headers />
@@ -161,13 +164,14 @@ export default ({ myContents, myFriends }) => {
                 icon={"Image"}
                 theme={"사진"}
                 fnc={"사진 추가"}
-                myContents={myContents}
+                myContents={ImgContents}
               />
               <MyStorage
                 color={"#ff4757"}
                 icon={"friends"}
                 theme={"친구"}
-                fnc={"친구 추가"}
+                fnc={"친구 찾기"}
+                linked={"/search?search="}
                 myContents={myFriends}
               />
             </MyStorages>

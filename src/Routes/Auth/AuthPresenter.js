@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "Components/Header/Header";
-import { color } from "Components/variable";
+import { color } from "Components/Global/variable";
 const HomeFrame2 = styled.div`
   margin: 0px 10px 0px 10px;
   display: flex;

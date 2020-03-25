@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color } from "../variable";
+import { color } from "Components/Global/variable";
 
 export const FriendList = styled.div`
   display: flex;
@@ -8,14 +8,14 @@ export const FriendList = styled.div`
   position: fixed;
   width: 250px;
   height: 100%;
-  overflow: auto;
+
   border-left: 1px solid ${color.fbLine};
   @media screen and (min-width: 1025px) {
     right: 0;
     top: 40px;
   }
   @media only screen and (max-width: 1024px) {
-    bottom: 0px;
+    bottom: 8px;
     height: 35px;
     width: 210px;
     right: 50px;
@@ -47,10 +47,28 @@ export const ListHeader = styled.div`
   font-weight: bold;
   padding: 10px 10px 10px 10px;
   &:after {
-    content: "(2)";
+    content: ${props => `(${props.number})`};
+  }
+  span {
+    margin-left: 1px;
+    font-size: 15px;
   }
   @media only screen and (max-width: 1100px) {
-    display: block;
+    display: flex;
+    align-items: center;
+
     border-bottom: 1px solid ${color.fbLine};
   }
+`;
+export const ListWrap = styled.div`
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  ::-webkit-scrollbar-track {
+  }
+  ::-webkit-scrollbar-thumb {
+    background: ${color.fbLightGrey};
+    border-radius: 10px;
+  }
+  overflow: auto;
 `;

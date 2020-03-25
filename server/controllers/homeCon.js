@@ -71,7 +71,7 @@ export const makeContent = async (req, res) => {
       contentType: mimetype,
       text
     });
-    res.redirect(routes.home);
+    res.redirect(routes.me);
   } catch (error) {
     console.log(error);
   }
@@ -81,10 +81,13 @@ export const getSearch = async (req, res) => {
   const {
     body: { search }
   } = req;
-
+  const {
+    user: { id }
+  } = req;
   const users = await User.find({
     nickname: { $regex: `${search}`, $options: "i" }
   });
+  const myFriends = await User.findOne({ _id: id });
 
-  res.json({ users });
+  res.json({ users, myFriends: myFriends.friends });
 };

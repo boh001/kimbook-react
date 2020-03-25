@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { color } from "Components/variable";
+import { color } from "Components/Global/variable";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div`
   width: 100%;
@@ -64,6 +65,10 @@ export const ImgWrap = styled.div`
 export const HeaderTheme = styled.div`
   font-size: 18px;
 `;
-export const StorageFnc = styled.div`
+export const StorageFnc = styled(Link)`
   font-size: 13px;
+  color: ${color.fbLightBlue};
+  &:hover {
+    text-decoration: underline;
+  }
 `;

@@ -6,7 +6,8 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: [],
+      myFriends: []
     };
   }
   async componentDidMount() {
@@ -14,15 +15,17 @@ export default class extends React.Component {
 
     try {
       const {
-        data: { users }
+        data: { users, myFriends }
       } = await apiSearch(query.search);
-      this.setState({ users });
+      this.setState({ users, myFriends });
     } catch (error) {
       console.log(error);
     }
   }
   render() {
-    const { users } = this.state;
-    return <SearchPresenter users={users} />;
+    const { users, myFriends } = this.state;
+    console.log(myFriends);
+
+    return <SearchPresenter users={users} myFriends={myFriends} />;
   }
 }

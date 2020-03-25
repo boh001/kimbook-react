@@ -42,18 +42,21 @@ export const apiLike = async (req, res) => {
   try {
     const content = await Content.findOne({ _id: id });
     const likeUsers = content.likeUsers;
+    let color = "";
     if (likeUsers.includes(_id)) {
+      color = "black";
       await content.updateOne({
         $inc: { like: -1 },
         $pull: { likeUsers: _id }
       });
       res.json({ color: "", body: -1 });
     } else {
+      color = "#1877f2";
       await content.updateOne({
         $inc: { like: 1 },
         $push: { likeUsers: _id }
       });
-      res.json({ color: "#1877f2", body: 1 });
+      res.json({ color, body: 1 });
     }
   } catch (error) {
     console.log(error);

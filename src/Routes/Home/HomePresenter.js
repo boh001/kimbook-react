@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { color } from "Components/variable";
+import { color } from "Components/Global/variable";
 import { Link } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color } from "Components/variable";
+import { color } from "Components/Global/variable";
 
 export const ReComment = styled.div`
   margin-top: 10px;
