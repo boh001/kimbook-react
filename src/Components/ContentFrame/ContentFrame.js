@@ -18,9 +18,15 @@ import {
   StaticInput,
   FormStatic
 } from "./ContentFrame.style";
+import { useCallback, useRef } from "react";
 
 export default () => {
   const { avatarUrl, nickname } = JSON.parse(localStorage.getItem("user"));
+  const inputRef = useRef();
+  const focusing = useCallback(e => {
+    e.preventDefault();
+    inputRef.current.focus();
+  });
   return (
     <>
       {/* <ContentFilter>
@@ -34,14 +40,14 @@ export default () => {
               <TextAvatar to="/login">
                 <Avatar2 avatarUrl={avatarUrl} />
               </TextAvatar>
-              <TextInput nickname={nickname} />
+              <TextInput ref={inputRef} nickname={nickname} />
             </FormText>
             <FormStatic>
               <StaticLabel>
                 <FontAwesomeIcon icon={faImage} size="lg" />
                 &nbsp; 사진 / 동영상
               </StaticLabel>
-              <StaticInput />
+              <StaticInput onChange={e => focusing(e)} />
             </FormStatic>
           </ContentMaker>
         </MakerForm>

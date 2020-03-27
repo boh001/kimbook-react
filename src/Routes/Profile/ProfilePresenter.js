@@ -117,7 +117,7 @@ const MyStorages = styled.div`
   display: flex;
   flex-direction: column;
   width: 400px;
-  height: 900px;
+  height: 100%;
   padding-right: 15px;
 `;
 
@@ -129,6 +129,7 @@ export default ({ myContents, myFriends }) => {
   const ImgContents = myContents.filter(
     c => c.contentType.split("/")[0] === "image"
   );
+
   return (
     <>
       <Headers />
@@ -164,7 +165,9 @@ export default ({ myContents, myFriends }) => {
                 icon={"Image"}
                 theme={"사진"}
                 fnc={"사진 추가"}
-                myContents={ImgContents}
+                myContents={
+                  ImgContents.length > 9 ? ImgContents.slice(0, 9) : ImgContents
+                }
               />
               <MyStorage
                 color={"#ff4757"}
@@ -172,7 +175,9 @@ export default ({ myContents, myFriends }) => {
                 theme={"친구"}
                 fnc={"친구 찾기"}
                 linked={"/search?search="}
-                myContents={myFriends}
+                myContents={
+                  myFriends.length > 9 ? myFriends.slice(0, 9) : myFriends
+                }
               />
             </MyStorages>
             <MyContents>

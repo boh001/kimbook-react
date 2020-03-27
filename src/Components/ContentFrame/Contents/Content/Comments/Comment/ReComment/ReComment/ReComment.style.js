@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { color } from "Components/Global/variable";
+import { Link } from "react-router-dom";
 
 export const ReComment = styled.div`
   margin-top: 10px;
@@ -25,10 +26,13 @@ export const InfoAuthor = styled.div`
   font-size: 13px;
   margin-left: 10px;
 `;
-export const AuthorName = styled.div`
+export const AuthorName = styled(Link)`
   color: ${color.fbBlue};
   font-size: 13px;
   margin-right: 5px;
+  &:visited {
+    color: ${color.fbBlue};
+  }
 `;
 export const ReCommentReact = styled.div`
   cursor: pointer;

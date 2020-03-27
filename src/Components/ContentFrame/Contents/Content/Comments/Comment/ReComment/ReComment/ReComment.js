@@ -13,7 +13,7 @@ import {
   Descr
 } from "./ReComment.style";
 
-export default ({ reComment }) => {
+export default ({ reComment, input }) => {
   const {
     author: { nickname, avatarUrl },
     description,
@@ -28,6 +28,9 @@ export default ({ reComment }) => {
     } = await upCommentLike(_id);
 
     return setLike(initLike + body);
+  });
+  const tagging = useCallback(e => {
+    input.current.value = `${nickname} `;
   });
   return (
     <ReComment>
@@ -44,7 +47,9 @@ export default ({ reComment }) => {
           <span>{initLike}</span>
           <span>개</span>
         </div>
-        <ReactShow>댓글달기</ReactShow>
+        <ReactShow onClick={e => tagging(encodeURIComponent)}>
+          댓글달기
+        </ReactShow>
       </ReCommentReact>
     </ReComment>
   );

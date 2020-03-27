@@ -20,12 +20,12 @@ export const Name = styled.div`
 `;
 
 export const Storage = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 6fr;
-  grid-auto-columns: 1fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   background-color: white;
   width: 100%;
-  height: 100%;
+  height: 500px;
   border: 1px solid ${color.fbLine};
   padding: 5px;
   margin-bottom: 15px;
@@ -35,8 +35,8 @@ export const StorageHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
-  padding: 0px 5px 0px 5px;
+  height: 10%;
+  padding: 0px 5px 5px 5px;
 `;
 export const StorageBody = styled.div`
   width: 100%;
@@ -44,7 +44,11 @@ export const StorageBody = styled.div`
   display: grid;
   grid-gap: 5px;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-auto-rows: 143px;
+`;
+export const StorageWrap = styled.div`
+  width: 100%;
+  height: 90%;
 `;
 export const HeaderWrap = styled.div`
   display: flex;

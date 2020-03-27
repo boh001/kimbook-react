@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from "react";
+import React, { useContext, useState, useCallback, useRef } from "react";
 import PropTypes from "prop-types";
 import { Avatar4 } from "Components/Avatar";
 import { apiReComment } from "api";
@@ -12,6 +12,7 @@ import {
 
 export default ({ id, Recomments }) => {
   const { avatarUrl } = JSON.parse(localStorage.getItem("user"));
+  const inputRef = useRef();
   const [initReComments, setReComments] = useState(Recomments);
   const reCommentsWrite = useCallback(async e => {
     if (e.keyCode === 13) {
@@ -32,13 +33,14 @@ export default ({ id, Recomments }) => {
       <ReCommentsUp>
         <Avatar4 avatarUrl={avatarUrl} />
         <UpInput
+          ref={inputRef}
           onKeyUp={e => reCommentsWrite(e)}
           onKeyDown={e => autoSize(e)}
         />
       </ReCommentsUp>
       <ReCommentWrap>
         {initReComments.map((reComment, key) => {
-          return <ReComment key={key} reComment={reComment} />;
+          return <ReComment key={key} reComment={reComment} input={inputRef} />;
         })}
       </ReCommentWrap>
     </ReComments>

@@ -9,7 +9,8 @@ import {
   HeaderWrap,
   ImgWrap,
   HeaderTheme,
-  StorageFnc
+  StorageFnc,
+  StorageWrap
 } from "./MyStorage.style";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
@@ -31,26 +32,28 @@ export default ({ color, icon, theme, fnc, myContents, linked }) => {
         </HeaderWrap>
         <StorageFnc to={linked}>{fnc}</StorageFnc>
       </StorageHeader>
-      <StorageBody>
-        {myContents.map((f, key) => {
-          if (icon === "Image") {
-            const { fileUrl } = f;
-            return (
-              <Wrap key={key}>
-                <Img url={fileUrl} h={"100%"} />
-              </Wrap>
-            );
-          } else {
-            const { avatarUrl, name } = f;
-            return (
-              <Wrap key={key}>
-                <Img url={avatarUrl} h={"80%"} />
-                <Name>{name}</Name>
-              </Wrap>
-            );
-          }
-        })}
-      </StorageBody>
+      <StorageWrap>
+        <StorageBody>
+          {myContents.map((f, key) => {
+            if (icon === "Image") {
+              const { fileUrl } = f;
+              return (
+                <Wrap key={key}>
+                  <Img url={fileUrl} h={"100%"} />
+                </Wrap>
+              );
+            } else {
+              const { avatarUrl, name } = f;
+              return (
+                <Wrap key={key}>
+                  <Img url={avatarUrl} h={"80%"} />
+                  <Name>{name}</Name>
+                </Wrap>
+              );
+            }
+          })}
+        </StorageBody>
+      </StorageWrap>
     </Storage>
   );
 };

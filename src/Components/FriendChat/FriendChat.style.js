@@ -15,7 +15,7 @@ export const FriendList = styled.div`
     top: 40px;
   }
   @media only screen and (max-width: 1024px) {
-    bottom: 8px;
+    bottom: 0;
     height: 35px;
     width: 210px;
     right: 50px;
@@ -40,6 +40,11 @@ export const FriendList = styled.div`
       transition: all ease 0.5s;
     }
   }
+`;
+export const Relative = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
 `;
 export const ListHeader = styled.div`
   display: none;
