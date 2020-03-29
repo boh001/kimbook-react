@@ -1,6 +1,7 @@
 import Content from "../models/Content";
 import Comment from "../models/Comment";
 import User from "../models/User";
+import ChatRoom from "../models/chatRoom";
 export const apiContents = async (req, res) => {
   try {
     const contents = await Content.find({}).populate([
@@ -222,4 +223,14 @@ export const apiMyContent = async (req, res) => {
   ]);
 
   res.json({ myContents, myFriends });
+};
+
+export const apiMsg = async (req, res) => {
+  const {
+    body: { id }
+  } = req;
+  const room = await ChatRoom.findOne({ _id: id }).populate([
+    { path: "messages", model: "Message" }
+  ]);
+  res.json({ room });
 };

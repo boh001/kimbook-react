@@ -27,6 +27,10 @@ export default () => {
     e.preventDefault();
     inputRef.current.focus();
   });
+  const autoSize = useCallback(e => {
+    e.target.style.height = "auto";
+    e.target.style.height = e.target.scrollHeight + "px";
+  });
   return (
     <>
       {/* <ContentFilter>
@@ -40,7 +44,11 @@ export default () => {
               <TextAvatar to="/login">
                 <Avatar2 avatarUrl={avatarUrl} />
               </TextAvatar>
-              <TextInput ref={inputRef} nickname={nickname} />
+              <TextInput
+                ref={inputRef}
+                nickname={nickname}
+                onKeyDown={e => autoSize(e)}
+              />
             </FormText>
             <FormStatic>
               <StaticLabel>

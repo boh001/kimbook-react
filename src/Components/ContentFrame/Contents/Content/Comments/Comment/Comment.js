@@ -13,8 +13,7 @@ import {
   ReactShow,
   Descr
 } from "./Comment.style";
-export default ({ h, comment }) => {
-  let Rh = h;
+export default ({ comment }) => {
   const {
     author: { nickname, avatarUrl },
     author,
@@ -40,7 +39,7 @@ export default ({ h, comment }) => {
     <Comment>
       <CommentInfo>
         <Avatar3 avatarUrl={avatarUrl} />
-        <InfoAuthor h={Rh}>
+        <InfoAuthor>
           <AuthorName to={`/profile/${author._id}`}>{nickname}</AuthorName>
           <Descr>{description}</Descr>
         </InfoAuthor>

@@ -21,7 +21,7 @@ export const JoinRoom = async (socket, { roomId, idList, me }) => {
     }
   }
 };
-export const SendMessage = async (socket, { text, id, roomId }) => {
+export const SendMessage = async (socket, { text, id }) => {
   const msg = await Message.create({
     author: id,
     description: text
@@ -35,7 +35,6 @@ export const SendMessage = async (socket, { text, id, roomId }) => {
   socket.broadcast.emit(events.NewMessage, {
     avatarUrl: user.avatarUrl,
     nickname: socket.nickname,
-    text,
-    roomId
+    text
   });
 };

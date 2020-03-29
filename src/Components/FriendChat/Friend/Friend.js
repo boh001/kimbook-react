@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { Avatar3 } from "Components/Avatar";
 import { Friend, FriendInfo, InfoName } from "./Friend.style";
 import socketio from "socket.io-client";
@@ -7,6 +7,7 @@ import events from "socketEvent";
 import ChatRoom from "./ChatRoom/ChatRoom";
 
 export default ({ id, avatarUrl, nickname }) => {
+  const [active, setActive] = useState(false);
   const me = JSON.parse(localStorage.getItem("user")).id;
   let idList = [me, id].sort();
   const roomId = `${idList[0]}/${idList[1]}`;
@@ -15,6 +16,7 @@ export default ({ id, avatarUrl, nickname }) => {
     const socket = socketio.connect("http://localhost:3000");
     initSocket(socket);
     getSocket().emit(events.JoinRoom, { roomId, idList, me });
+    setActive(true);
   });
   return (
     <>
@@ -24,7 +26,13 @@ export default ({ id, avatarUrl, nickname }) => {
           <InfoName>{nickname}</InfoName>
         </FriendInfo>
       </Friend>
-      <ChatRoom />
+      <ChatRoom
+        roomId={roomId}
+        nickname={nickname}
+        avatarUrl={avatarUrl}
+        active={active}
+        setActive={setActive}
+      />
     </>
   );
 };

@@ -26,6 +26,7 @@ export default ({ id, Recomments }) => {
     }
   });
   const autoSize = useCallback(e => {
+    e.target.style.height = "auto";
     e.target.style.height = e.target.scrollHeight + "px";
   });
   return (

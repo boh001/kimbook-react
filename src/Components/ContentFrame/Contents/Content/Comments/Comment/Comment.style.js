@@ -17,7 +17,7 @@ export const CommentInfo = styled.div`
 export const InfoAuthor = styled.div`
   display: flex;
   justify-content: flex-start;
-  ${props => (props.h ? "align-items:flex-start;" : "align-items:center;")};
+  align-items: center;
   min-height: 35px;
   border: 1px solid ${color.fbBg};
   border-radius: 15px;

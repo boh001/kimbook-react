@@ -8,7 +8,8 @@ import {
   apiCommentLike,
   apiPlusFriend,
   apiContents,
-  apiMyContent
+  apiMyContent,
+  apiMsg
 } from "../controllers/apiCon";
 
 const apiRouter = express.Router();
@@ -21,4 +22,5 @@ apiRouter.post(routes.comment, apiComment);
 apiRouter.post(routes.reComment, apiReComment);
 apiRouter.post(routes.commentLike, apiCommentLike);
 apiRouter.post(routes.plusFriend, apiPlusFriend);
+apiRouter.post(routes.sendMsg, apiMsg);
 export default apiRouter;

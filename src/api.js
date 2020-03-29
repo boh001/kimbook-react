@@ -52,3 +52,9 @@ export const apiUpFriend = id => {
   };
   return api.post(`api/${id}/plusFriend`, data);
 };
+export const apiMsg = id => {
+  const data = {
+    id
+  };
+  return api.post("api/${id}/apiMsg", data);
+};

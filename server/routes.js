@@ -18,6 +18,7 @@ const COMMENT = "/:id/comment";
 const RECOMMENT = "/:id/reComment";
 const COMMENTLIKE = "/:id/commentLike";
 const MYCONTENT = "/myContent";
+const SENDMSG = "/:id/apiMsg";
 
 //USER
 const USER = "/user";
@@ -42,6 +43,7 @@ const routes = {
   comment: COMMENT,
   reComment: RECOMMENT,
   commentLike: COMMENTLIKE,
+  sendMsg: SENDMSG,
   profile: id => {
     if (id) {
       return `${USER}/${id}/profile`;
