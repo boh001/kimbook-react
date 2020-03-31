@@ -13,9 +13,10 @@ export const GlobalStyles = createGlobalStyle`
   -moz-box-sizing: border-box;
   box-sizing: border-box;
     }
-
-    input{
-        autocomplete: "off"
+    input {
+        &:focus {
+    outline: none;
+  }
     }
     html{
         background-color: ${color.fbBg};

@@ -8,6 +8,8 @@ export const JoinRoom = async (socket, { roomId, idList, me }) => {
 
   socket.nickname = user.nickname;
   socket.room = roomId;
+  console.log(socket.nickname, socket.room);
+
   const room = await ChatRoom.findOne({ _id: roomId });
   if (!room) {
     try {
@@ -26,6 +28,8 @@ export const SendMessage = async (socket, { text, id }) => {
     author: id,
     description: text
   });
+  console.log(msg);
+
   await ChatRoom.findOneAndUpdate(
     { _id: socket.room },
     { $push: { messages: msg.id } }

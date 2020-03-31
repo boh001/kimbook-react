@@ -230,7 +230,18 @@ export const apiMsg = async (req, res) => {
     body: { id }
   } = req;
   const room = await ChatRoom.findOne({ _id: id }).populate([
-    { path: "messages", model: "Message" }
+    {
+      path: "messages",
+      model: "Message",
+      populate: [
+        {
+          path: "author",
+          model: "User"
+        }
+      ]
+    }
   ]);
-  res.json({ room });
+  const { messages } = room;
+
+  res.json({ messages });
 };

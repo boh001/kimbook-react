@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { color } from "Components/Global/variable";
 export const RoomFrame = styled.div`
   position: absolute;
-  bottom: 50px;
+  bottom: 100px;
   left: -100px;
   border: 1px solid;
   width: 300px;
@@ -33,7 +33,9 @@ export const HeaderClose = styled.div`
   align-items: center;
   color: ${color.fbLightBlue};
 `;
-export const RoomMsg = styled.div``;
+export const RoomMsg = styled.div`
+  overflow: auto;
+`;
 export const RoomSub = styled.div`
   border-top: 1px solid ${color.fbLine};
 `;

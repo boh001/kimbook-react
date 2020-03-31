@@ -79,9 +79,6 @@ export const TextInput = styled.input.attrs(props => ({
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  &:focus {
-    outline: none;
-  }
 `;
 
 export const StaticLabel = styled.label`

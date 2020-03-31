@@ -24,8 +24,6 @@ export default class extends React.Component {
   }
   render() {
     const { users, myFriends } = this.state;
-    console.log(myFriends);
-
     return <SearchPresenter users={users} myFriends={myFriends} />;
   }
 }
