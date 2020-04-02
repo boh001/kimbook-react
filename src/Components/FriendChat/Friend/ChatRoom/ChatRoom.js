@@ -1,4 +1,4 @@
-import React, { useCallback, forwardRef } from "react";
+import React, { useCallback, forwardRef, useRef } from "react";
 import {
   RoomFrame,
   RoomHeader,
@@ -15,6 +15,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { getSocket } from "socket";
 import events from "socketEvent";
 import Message from "./Message/Message";
+
 export default React.forwardRef(
   ({ msg, setMsg, nickname, AvatarUrl, active, setActive }, ref) => {
     const { id, avatarUrl } = JSON.parse(localStorage.getItem("user"));
@@ -23,14 +24,19 @@ export default React.forwardRef(
       if (e.keyCode === 13) {
         const target = e.currentTarget;
         const text = target.value;
-        getSocket().emit(events.SendMessage, { text, id });
+        getSocket().emit(events.SendMessage, { text, id, msg });
         target.value = "";
         setMsg([...msg, { author: { _id: id, avatarUrl }, description: text }]);
+        console.log(ref.current.scrollHeight);
+
+        ref.current.scrollTop = ref.current.scrollHeight;
+        console.log(ref.current.scrollHeight);
       }
     });
     const close = useCallback(e => {
       setActive(false);
     });
+
     return (
       <RoomFrame active={active}>
         <RoomHeader>

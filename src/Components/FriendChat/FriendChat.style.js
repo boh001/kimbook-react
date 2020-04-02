@@ -8,15 +8,16 @@ export const FriendList = styled.div`
   position: fixed;
   width: 250px;
   height: 100%;
-
+  transition: all ease 0.5s;
   border-left: 1px solid ${color.fbLine};
+  cursor: pointer;
   @media screen and (min-width: 1025px) {
     right: 0;
     top: 40px;
   }
   @media only screen and (max-width: 1024px) {
     bottom: 0;
-    height: 35px;
+    height: ${props => (props.h ? "200px" : "35px")};
     width: 210px;
     right: 50px;
     border: 1px solid ${color.fbLine};
@@ -35,10 +36,6 @@ export const FriendList = styled.div`
     -ms-transition: all 0.25s ease-in-out;
     -o-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
-    &:hover {
-      height: 200px;
-      transition: all ease 0.5s;
-    }
   }
 `;
 export const Relative = styled.div`

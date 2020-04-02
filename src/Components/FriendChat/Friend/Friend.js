@@ -8,12 +8,19 @@ import ChatRoom from "./ChatRoom/ChatRoom";
 import { apiMsg } from "api";
 
 export default ({ id, avatarUrl, nickname }) => {
+  console.log("friends");
+
   const [active, setActive] = useState(false);
   const [msg, setMsg] = useState([]);
+
   const me = JSON.parse(localStorage.getItem("user")).id;
   let idList = [me, id].sort();
   const roomId = `${idList[0]}/${idList[1]}`;
   const chatRef = useRef();
+  const handleNewMsg = useCallback(data => {
+    const { id, avatarUrl, text, msg } = data;
+    setMsg([...msg, { author: { _id: id, avatarUrl }, description: text }]);
+  });
   const joinRoom = useCallback(async e => {
     e.preventDefault();
     const socket = socketio.connect("http://localhost:3000");
@@ -24,6 +31,8 @@ export default ({ id, avatarUrl, nickname }) => {
       data: { messages }
     } = await apiMsg(roomId);
     setMsg([...messages]);
+    getSocket().on(events.NewMessage, handleNewMsg);
+    console.log(chatRef.current.scrollTop, chatRef.current.scrollHeight);
     chatRef.current.scrollTop = chatRef.current.scrollHeight;
   });
 

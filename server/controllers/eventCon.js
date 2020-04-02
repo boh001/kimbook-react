@@ -23,22 +23,22 @@ export const JoinRoom = async (socket, { roomId, idList, me }) => {
     }
   }
 };
-export const SendMessage = async (socket, { text, id }) => {
-  const msg = await Message.create({
+export const SendMessage = async (socket, { text, id, msg }) => {
+  const newMsg = await Message.create({
     author: id,
     description: text
   });
-  console.log(msg);
-
   await ChatRoom.findOneAndUpdate(
     { _id: socket.room },
-    { $push: { messages: msg.id } }
+    { $push: { messages: newMsg.id } }
   );
 
   const user = await User.findOne({ _id: id });
   socket.broadcast.emit(events.NewMessage, {
+    id,
     avatarUrl: user.avatarUrl,
     nickname: socket.nickname,
-    text
+    text,
+    msg
   });
 };

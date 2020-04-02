@@ -47,4 +47,5 @@ export const SubInput = styled.input.attrs({
   height: 50%;
   border: none;
   padding: 5px;
+  font-size: 15px;
 `;
