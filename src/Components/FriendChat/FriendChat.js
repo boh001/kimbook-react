@@ -8,8 +8,6 @@ export default () => {
   const friends = useUser();
   const [h, setH] = useState(false);
   const up = useCallback(e => {
-    console.log(h);
-
     setH(!h);
   });
   return (

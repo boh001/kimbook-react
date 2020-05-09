@@ -55,7 +55,7 @@ export const ListHeader = styled.div`
     margin-left: 1px;
     font-size: 15px;
   }
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1024px) {
     display: flex;
     align-items: center;
 
