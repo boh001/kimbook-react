@@ -13,12 +13,6 @@ Function
 - Comment
 - Realtime Chat(socket.io)
 
-Hosting
-
-- Server : Heroku
-- DB : MongoAtlas
-- Storage : AWS-s3
-
 Memo
 
 - Env </br>
