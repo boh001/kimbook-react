@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## 프로젝트 소개
 
-이전의 만들었던 FaceBook 의 프론트부분을 Reactjs를 이용하여 재구성하였다.
+이전의 만들었던 FaceBook 의 프론트부분을 Reactjs를 이용하여 재구성하였습니다.
 
 ## 웹사이트 화면
 
