@@ -1,21 +1,17 @@
-# Kimbook-react
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Programming launguage
+## 프로젝트 소개
 
-- Backend : NodeJS(Express)
-- Frontend : ReactJS
+이전의 만들었던 FaceBook 의 프론트부분을 Reactjs를 이용하여 재구성하였다.
 
-Function
+## 웹사이트 화면
 
-- Upload Contents
-- Like Button
-- Find Friends
-- Comment
-- Realtime Chat(socket.io)
+## 기술 스택
 
-Memo
+| Front-End                                                                                                      | Back-End                                                                                                       | DataBase                                                                                                       |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| ![image](https://user-images.githubusercontent.com/54930248/86572822-6cdf2700-bfae-11ea-8f8f-e2b7cb06c0f7.png) | ![image](https://user-images.githubusercontent.com/54930248/86572542-0bb75380-bfae-11ea-880a-74f533120121.png) | ![image](https://user-images.githubusercontent.com/54930248/86572771-5c2eb100-bfae-11ea-8f8f-6a76aad90d85.png) |
 
-- Env </br>
-  -> React에서 기본적으로 .env 파일의 port를 바라봄. 서버와 클라이언트 포트를 설정할때 주의 </br>
-- Multer </br>
-  -> Multer middleware는 enctype으로 multipart만을 input으로 받는데 react에서는 enctype이 아닌 encType으로 적어야함(사소하지만 모르면 시간 많이 잡아먹음)
+| Prototype                                                                                                       | Testing | Cloud-Service                                                                                                  |
+| --------------------------------------------------------------------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| ![image](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpllvO9KSl49BWp4N-DBeZ--eIqUd01Oqg8g&usqp=CAU) |  ![image](https://user-images.githubusercontent.com/54930248/87116477-e0d04680-c2b0-11ea-9a89-c7d7028d2874.png) | ![image](https://user-images.githubusercontent.com/54930248/86573281-21794880-bfaf-11ea-91f8-6657b2877dc7.png) |
