@@ -9,7 +9,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 |-----------|--------|----------|
 |![image](https://user-images.githubusercontent.com/54930248/90600881-44e01600-e232-11ea-97cc-92ee9506be1c.png)|![image](https://user-images.githubusercontent.com/54930248/90600927-56292280-e232-11ea-9732-8735b980a906.png)|![image](https://user-images.githubusercontent.com/54930248/90600937-5a554000-e232-11ea-9781-b3925b0ae0b0.png)|
 |메인화면|채팅화면|
-|-----------|--------|
 |![image](https://user-images.githubusercontent.com/54930248/90600942-5c1f0380-e232-11ea-8d94-5d653be4dd65.png)|![image](https://user-images.githubusercontent.com/54930248/90600948-5de8c700-e232-11ea-9551-c6abfe91a217.png)|
 
 ## 기술 스택
