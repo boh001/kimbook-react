@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 이전의 만들었던 FaceBook 의 프론트부분을 Reactjs를 이용하여 재구성하였습니다.
 
 ## 웹사이트 화면
-
+![image](https://user-images.githubusercontent.com/54930248/90600805-2aa63800-e232-11ea-89dc-148dd3d421b4.png)
 ## 기술 스택
 
 | Front-End                                                                                                      | Back-End                                                                                                       | DataBase                                                                                                       |
